@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasnim_Loan.Persistence", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasnim_Loan.Common", "Tasnim_Loan.Common\Tasnim_Loan.Common.csproj", "{FB8E2EA9-76D4-4BF1-98E9-79F5ED9B2506}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndPoint.Site", "EndPoint.Site\EndPoint.Site.csproj", "{C32C8596-D9A6-4212-87C3-C56F884265F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint.Site", "EndPoint.Site\EndPoint.Site.csproj", "{C32C8596-D9A6-4212-87C3-C56F884265F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
