@@ -1,11 +1,11 @@
-﻿using  Tasnim_Loan.Application.Services.Customers.Commands.EditUser;
-using  Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser;
-using  Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Tasnim_Loan.Application.Sevices.Customers.Commands.RegisterUser;
-using Tasnim_Loan.Application.Sevices.Customers.Queries.GetCustomers;
-
+using Tasnim_Loan.Application.Services.Customers.Commands.EditUser;
+using Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser;
+using Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange;
+using Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser;
+using Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
@@ -52,12 +52,12 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         // دیتا رو به سرویس رجیستر یوزر ارسال میکنه و ثبت نام رو انجام میده
 
         [HttpPost]
-        public IActionResult Create(string Name, string Family, string National_Number, int Unique_Payment_Identifier, string Description)
+        public IActionResult Create(string Fullname, string Password, string National_Number, int Unique_Payment_Identifier, string Description)
         {
             var result = _registerCustomerService.Execute(new RequestRegisterCustomerDto
             {
-                Name = Name,
-                Family = Family,
+                FullName=Fullname,
+                Password=Password,
                 National_Number = National_Number,
                 Unique_Payment_Identifier = Unique_Payment_Identifier,
                 Description = Description,
@@ -67,29 +67,30 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return Json(result);
         }
         [HttpPost]
-        public IActionResult Delete(int CustomerId)
+        public IActionResult Delete(int UseerId)
            {
-               return Json(_removeUserService.Execute(CustomerId));
+               return Json(_removeUserService.Execute(UseerId));
            }
            [HttpPost]
-           public IActionResult UserSatusChange(int CustomerId)
+           public IActionResult UserSatusChange(int UseerId)
            {
-               return Json(_userSatusChangeService.Execute(CustomerId));
+               return Json(_userSatusChangeService.Execute(UseerId));
            }
            [HttpPost]
-           public IActionResult Edit(int ID, string Name, string Family, string National_Number, int Unique_Payment_Identifier, string Description, DateTime InsertionTime)
+           public IActionResult Edit(int ID, string Fullname,string Password, string National_Number, int Unique_Payment_Identifier, string Description, DateTime InsertionTime)
            {
             
                return Json(_editUserService.Execute(new RequestEdituserDto
                {
                    ID=ID,
-                   Name = Name,
-                   Family = Family,
+                   FullName=Fullname,
+                   Password=Password,
                    National_Number = National_Number,
                    Unique_Payment_Identifier = Unique_Payment_Identifier,
                    Description = Description,
                    InsertionTime = InsertionTime
                }));
            }
+     
     }
 }

@@ -1,7 +1,4 @@
-using Tasnim_Loan.Application.Services.Customers.Commands.EditUser;
-using Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser;
 
-using Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,14 +11,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tasnim_Loan.Application.Interfaces.Contexts;
-using Tasnim_Loan.Application.Sevices.Customers.Commands.RegisterUser;
-using Tasnim_Loan.Application.Sevices.Customers.Queries.GetCustomers;
+
 using Tasnim_Loan.Persistence.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Tasnim_Loan.Application.Services.Customers.Commands.UserLogin;
-using Tasnim_Loan.Domain.Entities;
 
+using Tasnim_Loan.Domain.Entities;
+using Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser;
+using Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers;
+using Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser;
+using Tasnim_Loan.Application.Services.Customers.Commands.UserLogin;
+using Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange;
+using Tasnim_Loan.Application.Services.Customers.Commands.EditUser;
+using Tasnim_Loan.Application.Services.Customers.Queries.GetRoles;
 
 namespace EndPoint.Site
 {
@@ -59,6 +61,7 @@ namespace EndPoint.Site
             services.AddScoped<IUserLoginService, UserLoginService>();
             services.AddScoped<IUserSatusChangeService, UserSatusChangeService>();
             services.AddScoped<IEditUserService, EditUserService>();
+            services.AddScoped<IGetRolesService, GetRolesService>();
 
 
             string connectionString = "Data Source= NEGAR; Initial Catalog=Tasnim_LoanDb; Integrated Security=True;";
@@ -97,7 +100,8 @@ namespace EndPoint.Site
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-            });
+            
+                });
         }
     }
 }

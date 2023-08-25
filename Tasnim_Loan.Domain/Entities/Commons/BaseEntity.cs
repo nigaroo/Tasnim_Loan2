@@ -18,7 +18,7 @@ namespace Tasnim_Loan.Domain.Entities.Commons
         public DateTime? UpdateTime { get; set; }
         public bool IsRemoved { get; set; } = false;
         public DateTime? RemoveTime { get; set; }
-        public bool IsActive { get; set; }
+
     }
     public abstract class BaseEntity : BaseEntity<int>
     {

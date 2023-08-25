@@ -1,8 +1,9 @@
-﻿//using Tasnim_Loan.Domain.Entities.Commons;
+﻿
 using Tasnim_Loan.Domain.Entities.Commons;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Tasnim_Loan.Domain.Entities.Users;
 
 namespace Tasnim_Loan.Domain.Entities
 {
@@ -26,8 +27,6 @@ namespace Tasnim_Loan.Domain.Entities
 
         public DateTime Cleared_Date { get; set; }
 
-        [Required]
-        public int Customer_ID { get; set; }
 
         [Required]
         public int User_ID { get; set; }
@@ -35,8 +34,6 @@ namespace Tasnim_Loan.Domain.Entities
         [ForeignKey("User_ID")]
         public User User { get; set; }  // Navigation property for the user associated with this loan
         
-        
-        [ForeignKey("Customer_ID")]
-        public Customer Customers { get; set; }
+
     }
 }

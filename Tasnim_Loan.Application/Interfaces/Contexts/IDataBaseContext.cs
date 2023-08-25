@@ -6,15 +6,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Tasnim_Loan.Domain.Entities;
+using Tasnim_Loan.Domain.Entities.Users;
 
 namespace Tasnim_Loan.Application.Interfaces.Contexts
 {
     public interface IDataBaseContext
     {
          DbSet<Loan> Loans { get; set; }
-         DbSet<Customer> Customers { get; set; }
          DbSet<Transaction> Transactions { get; set; }
          DbSet<User> Users { get; set; }
+         DbSet<Role> Roles { get; set; }
+         DbSet<UserInRole> UserInRoles { get; set; }
 
 
 

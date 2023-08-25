@@ -1,4 +1,4 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "ثبت نام کاربر جدید";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -25,14 +25,20 @@
                                 <div class="row">
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput">نام </label>
-                                            <input type="text" class="form-control" id="name">
+                                            <label for="basicInput"> نام و نام خانوادگی</label>
+                                            <input type="text" class="form-control" id="fullname">
                                         </fieldset>
                                     </div>
-                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> نام خانوادگی</label>
-                                            <input type="text" class="form-control" id="family">
+                                            <label for="disabledInput">رمز عبور</label>
+                                            <input type="password" class="form-control" id="Password">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="disabledInput">تکرار رمز عبور</label>
+                                            <input type="password" class="form-control" id="RePassword">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -41,19 +47,27 @@
                                             <input type="text" class="form-control" id="National_Number">
                                         </fieldset>
                                     </div>
-                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">شناسه منحصر به فرد پرداخت </label>
                                             <input type="text" class="form-control" id="Unique_Payment_Identifier">
                                         </fieldset>
                                     </div>
-                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">توضیحات</label>
                                             <input type="text" class="form-control" id="description">
                                         </fieldset>
                                     </div>
-                            
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicSelect">نقش</label>
+                                            <select class="form-control" id="RoleId" name="Role" asp-items="@ViewBag.Roles">
+                                            </select>
+                                            <p><small class="text-muted">سطح دسترسی کاربر مورد نظر را تعیین کنید</small></p>
+                                        </fieldset>
+                                    </div>
+
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <br />
@@ -72,7 +86,7 @@
 
 
 @section Scripts
-{
+    {
 
     <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Sweetalert2/sweetalert2.min.js"></script>
@@ -92,20 +106,24 @@
             }).then((result) => {
                 if (result.value) {
 
-                    var name = $("#name").val();
-                    var family = $("#family").val();
+                    var fullname = $("#fullname").val();
+                    var Password = $("#Password").val();
+                    var RePassword = $("#RePassword").val();
                     var National_Number = $("#National_Number").val();
                     var Creation_Date = $("#Creation_Date").val();
                     var Unique_Payment_Identifier = $("#Unique_Payment_Identifier").val();
                     var description = $("#description").val();
+                    var RoleId = $("#RoleId").val();
 
                     var postData = {
-                        'name': name,
-                        'family': family,
+                        'fullname': fullname,
+                        'Password': Password,
+                        'RePassword': RePassword,
                         'National_Number': National_Number,
                         'Creation_Date': Creation_Date,
                         'Unique_Payment_Identifier': Unique_Payment_Identifier,
                         'description': description,
+                        'RoleId': RoleId,
                     };
 
                     $.ajax({
@@ -114,13 +132,13 @@
                         type: "POST",
                         url: "Create",
                         data: postData,
-                        success: function (data) {
+                        success: function(data) {
                             if (data.isSuccess == true) {
                                 swal.fire(
                                     'موفق!',
                                     data.message,
                                     'success'
-                                ).then(function (isConfirm) {
+                                ).then(function(isConfirm) {
                                     location.reload();
                                 });
 
@@ -132,11 +150,11 @@
                                     'هشدار!',
                                     data.message,
                                     'warning'
-                                ) ;
+                                );
 
                             }
                         },
-                        error: function (request, status, error) {
+                        error: function(request, status, error) {
                             alert(request.responseText);
                         }
 

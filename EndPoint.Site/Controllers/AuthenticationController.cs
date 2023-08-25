@@ -8,8 +8,10 @@ using Tasnim_Loan.Common.Dto;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser;
 using Tasnim_Loan.Application.Services.Customers.Commands.UserLogin;
-using Tasnim_Loan.Application.Sevices.Customers.Commands.RegisterUser;
+using EndPoint.Site.Models.ViewModels.AuthenticationViewModel;
+using Tasnim_Loan.Application.Singletons;
 
 namespace EndPoint.Site.Controllers
 {
@@ -24,71 +26,96 @@ namespace EndPoint.Site.Controllers
             _registerUserService = registerUserService;
             _userLoginService = userLoginService;
         }
-        /*
-                [HttpGet]
-                public IActionResult Signup()
+
+        [HttpGet]
+        public IActionResult Signup()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Signup(SignupViewModel request)
+        {
+            /*   if (!ModelState.IsValid)
+               {
+                   // Return a validation error response if the model state is not valid
+                   return Json(new ResultDto { IsSuccess = false, Message = "Validation errors" });
+               }
+            */
+            Console.WriteLine("Username: " + request.FullName);
+            Console.WriteLine("Pass: " + request.Password);
+            Console.WriteLine("Pass: " + request.RePassword);
+
+            Console.WriteLine("Pass: " + request.National_Number);
+
+
+
+
+            if (string.IsNullOrWhiteSpace(request.FullName) ||
+                string.IsNullOrWhiteSpace(request.Password) ||
+                string.IsNullOrWhiteSpace(request.RePassword)||
+                string.IsNullOrWhiteSpace(request.National_Number))
+            {
+                return Json(new ResultDto { IsSuccess = false, Message = "لطفا تمامی موارد رو ارسال نمایید" });
+            }
+
+            if (User.Identity.IsAuthenticated == true)
+            {
+                return Json(new ResultDto { IsSuccess = false, Message = "شما به حساب کاربری خود وارد شده اید! و در حال حاضر نمیتوانید ثبت نام مجدد نمایید" });
+            }
+            if (request.Password != request.RePassword)
+            {
+                return Json(new ResultDto { IsSuccess = false, Message = "رمز عبور و تکرار آن برابر نیست" });
+            }
+            if (request.Password.Length < 4)
+            {
+                return Json(new ResultDto { IsSuccess = false, Message = "رمز عبور باید حداقل 4 کاراکتر باشد" });
+            }
+
+
+
+            var signeupResult = _registerUserService.Execute(new RequestRegisterCustomerDto
+            {
+
+                FullName = request.FullName,
+                Password = request.Password,
+                RePasword = request.RePassword,
+                National_Number = request.National_Number,
+               // Unique_Payment_Identifier = 0,
+                roles = new List<RolesInRegisterUserDto>()
                 {
-                    return View();
+                    new RolesInRegisterUserDto { Id = 3},
                 }
 
-                [HttpPost]
-                public IActionResult Signup(SignupViewModel request)
+            });
+
+            if (signeupResult.IsSuccess == true)
+            {
+                var claims = new List<Claim>()
                 {
-                    if (string.IsNullOrWhiteSpace(request.Name) ||
-                        string.IsNullOrWhiteSpace(request.Password) ||
-                        string.IsNullOrWhiteSpace(request.RePassword))
-                    {
-                        return Json(new ResultDto { IsSuccess = false, Message = "لطفا تمامی موارد رو ارسال نمایید" });
-                    }
-
-                    if (User.Identity.IsAuthenticated == true)
-                    {
-                        return Json(new ResultDto { IsSuccess = false, Message = "شما به حساب کاربری خود وارد شده اید! و در حال حاضر نمیتوانید ثبت نام مجدد نمایید" });
-                    }
-                    if (request.Pass != request.RePassword)
-                    {
-                        return Json(new ResultDto { IsSuccess = false, Message = "رمز عبور و تکرار آن برابر نیست" });
-                    }
-                    if (request.Pass.Length < 8)
-                    {
-                        return Json(new ResultDto { IsSuccess = false, Message = "رمز عبور باید حداقل 8 کاراکتر باشد" });
-                    }
+                 new Claim(ClaimTypes.NameIdentifier,signeupResult.Data.UserId.ToString()),
+                 new Claim("NationalNumber", request.National_Number),
+                 new Claim(ClaimTypes.Name, request.FullName),
+                 new Claim(ClaimTypes.Role, "Customer"),
+                };
 
 
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+                var properties = new AuthenticationProperties()
+                {
+                    IsPersistent = true
+                };
+                HttpContext.SignInAsync(principal, properties);
 
-                    var signeupResult = _registerUserService.Execute(new RequestRegisterCustomerDto
-                    {
+                // Store the user ID using UserIdSingleton
+                UserIdSingleton.Instance.SetUserId(signeupResult.Data.UserId);
 
-                        Name = request.Name,
-                        Password = request.Password,
-                        RePasword = request.RePassword,
-
-                    });
-
-                    if (signeupResult.IsSuccess == true)
-                    {
-                        var claims = new List<Claim>()
-                    {
-
-                        new Claim(ClaimTypes.Username, request.Username),
-                        new Claim(ClaimTypes.Pass, request.Pass),
-
-                    };
+            }
+            return Json(signeupResult);
+        }
 
 
-                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var principal = new ClaimsPrincipal(identity);
-                        var properties = new AuthenticationProperties()
-                        {
-                            IsPersistent = true
-                        };
-                       HttpContext.SignInAsync(principal, properties);
-
-                    }
-                    return Json(signeupResult);
-                }
-
-        */
         public IActionResult Signin(string ReturnUrl = "/")
         {
             ViewBag.url = ReturnUrl;
@@ -96,17 +123,17 @@ namespace EndPoint.Site.Controllers
         }
 
         [HttpPost]
-        public IActionResult Signin(string Username, string Pass, string url = "/")
+        public IActionResult Signin(string Fullname, string Password,string url = "/")
         {
-            var signupResult = _userLoginService.Execute(Username, Pass);
+            var signupResult = _userLoginService.Execute(Fullname, Password);
             if (signupResult.IsSuccess == true)
             {
                 var claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.NameIdentifier,signupResult.Data.ID.ToString()),
-                new Claim("Username", Username),
-              
-            };
+               {
+                  new Claim(ClaimTypes.NameIdentifier,signupResult.Data.ID.ToString()),
+                   new Claim("Fullname", Fullname),
+
+               };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 var properties = new AuthenticationProperties()
@@ -114,8 +141,11 @@ namespace EndPoint.Site.Controllers
                     IsPersistent = true,
                     ExpiresUtc = DateTime.Now.AddDays(5),
                 };
-               HttpContext.SignInAsync(principal, properties);
-            
+                HttpContext.SignInAsync(principal, properties);
+
+                // Store the user ID using UserIdSingleton
+                UserIdSingleton.Instance.SetUserId(signupResult.Data.ID);
+
             }
             return Json(signupResult);
         }
@@ -124,8 +154,9 @@ namespace EndPoint.Site.Controllers
         public IActionResult SignOut()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-         
+
             return RedirectToAction("Index", "Home");
         }
+
     }
 }
