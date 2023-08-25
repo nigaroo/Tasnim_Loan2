@@ -46,11 +46,11 @@
                                         <form method="post" class="form-account text-right">
                                             <div class="form-account-title">
                                                 <label for="email-phone"> نام کاربری</label>
-                                                <input type="text" class="number-email-input" id="Username">
+                                                <input type="text" class="number-email-input" id="FullName">
                                             </div>
                                            <div class="form-account-title">
                                                 <label for="password">رمز عبور</label>
-                                                <input type="password" class="password-input" id="Pass">
+                                                <input type="password" class="password-input" id="Password">
                                             </div>
                                             <div class="form-account-title">
                                                 <label for="password">تکرار رمز عبور</label>
@@ -110,14 +110,14 @@
 <script>
     function Registeruser() {
  
-        var Username = $("#Username").val();
-        var Pass = $("#Pass").val();
+        var FullName = $("#FullName").val();
+        var Password = $("#Password").val();
         var RePassword = $("#RePassword").val();
         var National_Number = $("#National_Number").val();
 
         var postData = {
-            'Username': Username,
-            'Pass': Pass,
+            'FullName': FullName,
+            'Password': Password,
             'RePassword': RePassword,
             'National_Number': National_Number,
         };

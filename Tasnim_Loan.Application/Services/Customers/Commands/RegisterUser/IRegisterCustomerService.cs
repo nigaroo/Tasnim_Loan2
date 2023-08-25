@@ -89,10 +89,12 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
                         Message = "شناسه منحصر به فرد پرداخت  را وارد نمایید"
                     };
                 }
+
+
+
+
                 var passwordHasher = new PasswordHasher();
                 var hashedPassword = passwordHasher.HashPassword(request.Password);
-
-
 
                 // piadeesazi method execute
 

@@ -15,7 +15,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
 {
     public interface IUserLoginService
     {
-        ResultDto<ResultUserloginDto> Execute(string FullName, string Pass);
+        ResultDto<ResultUserloginDto> Execute(string FullName, string Password);
     }
 
     public class UserLoginService : IUserLoginService
@@ -42,23 +42,38 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
             }
 
 
- 
+
             var user = _context.Users
-          .Where(u => u.FullName == FullName)
-          .FirstOrDefault();
+          .Include(p => p.UserInRoles)
+          .ThenInclude(p => p.Role)
+          .Where(p => p.FullName == FullName
+           && p.IsActive == true)
+         .FirstOrDefault();
+
+
+
+            /*      .Include(p => p.UserInRoles)
+             .ThenInclude(p => p.Role)
+             .Where(p => p.Email.Equals(Username)
+         && p.IsActive == true)
+         .FirstOrDefault();
+            */
 
             if (user == null)
             {
-                return new ResultDto<ResultUserloginDto>
+                return new ResultDto<ResultUserloginDto>()
                 {
+                    Data = new ResultUserloginDto()
+                    {
+                    },
                     IsSuccess = false,
-                    Message = "کاربری با این نام کاربری یافت نشد"
+                    Message = "کاربری با این نام کاربری در  سایت  ثبت نام نکرده است",
                 };
             }
 
-
-            bool resultVerifyPassword = user.Password == Password;
-
+            var passwordHasher = new PasswordHasher();
+            // bool resultVerifyPassword = user.Password == Password;
+            bool resultVerifyPassword = passwordHasher.VerifyPassword(user.Password, Password);
             if (resultVerifyPassword == false)
             {
                 return new ResultDto<ResultUserloginDto>()
@@ -72,7 +87,11 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
                 };
             }
 
-
+            var roles = "";
+            foreach (var item in user.UserInRoles)
+            {
+                roles += $"{item.Role.Name}";
+            }
 
             return new ResultDto<ResultUserloginDto>()
             {
@@ -80,8 +99,8 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
                 {
                     ID = user.ID,
                     FullName = user.FullName
-                  
-        },
+
+                },
                 IsSuccess = true,
                 Message = "ورود به سایت با موفقیت انجام شد",
             };
@@ -93,7 +112,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
     public class ResultUserloginDto
     {
         public int ID { get; set; }
+        public string Roles { get; set; }
         public string FullName { get; set; }
-        public string Password { get; set; }
     }
 }

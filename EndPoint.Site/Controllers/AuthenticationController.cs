@@ -41,14 +41,14 @@ namespace EndPoint.Site.Controllers
                    // Return a validation error response if the model state is not valid
                    return Json(new ResultDto { IsSuccess = false, Message = "Validation errors" });
                }
-            */
+         
             Console.WriteLine("Username: " + request.FullName);
             Console.WriteLine("Pass: " + request.Password);
             Console.WriteLine("Pass: " + request.RePassword);
 
             Console.WriteLine("Pass: " + request.National_Number);
 
-
+   */
 
 
             if (string.IsNullOrWhiteSpace(request.FullName) ||

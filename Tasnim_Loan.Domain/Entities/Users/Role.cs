@@ -1,7 +1,5 @@
-﻿
+﻿using Tasnim_Loan.Domain.Entities.Commons;
 using System.Collections.Generic;
-using Tasnim_Loan.Domain.Entities.Commons;
-
 
 namespace Tasnim_Loan.Domain.Entities.Users
 {

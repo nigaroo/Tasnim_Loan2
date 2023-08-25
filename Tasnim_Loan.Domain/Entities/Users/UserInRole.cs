@@ -1,10 +1,14 @@
-﻿using Tasnim_Loan.Domain.Entities.Commons;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Tasnim_Loan.Domain.Entities.Commons;
 
 namespace Tasnim_Loan.Domain.Entities.Users
 {
-    public class UserInRole : BaseEntity
+    public class UserInRole :BaseEntity
+
     {
-        public long Id { get; set; }
+        //  public int Idrole { get; set; }
         public virtual User User { get; set; }
         public int UserId { get; set; }
 
