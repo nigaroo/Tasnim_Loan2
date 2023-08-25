@@ -11,6 +11,7 @@ namespace EndPoint.Site.Models.ViewModels.AuthenticationViewModel
         public  string Password{ get; set; }
         public  string RePassword{ get; set; }
         public string National_Number { get; set; }
-   
+        //   public string Unique_Payment_Identifier { get; set; }
+
     }
 }

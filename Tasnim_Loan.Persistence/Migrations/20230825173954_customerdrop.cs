@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Tasnim_Loan.Persistence.Migrations
 {
-    public partial class addUser : Migration
+    public partial class customerdrop : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -128,7 +128,6 @@ namespace Tasnim_Loan.Persistence.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     InsertTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -152,6 +151,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "ID", "InsertTime", "IsRemoved", "Name", "RemoveTime", "UpdateTime" },
+                values: new object[] { 1, new DateTime(2023, 8, 25, 21, 9, 51, 220, DateTimeKind.Local).AddTicks(680), false, "Admin", null, null });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "ID", "InsertTime", "IsRemoved", "Name", "RemoveTime", "UpdateTime" },
+                values: new object[] { 2, new DateTime(2023, 8, 25, 21, 9, 51, 234, DateTimeKind.Local).AddTicks(6488), false, "Operator", null, null });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "ID", "InsertTime", "IsRemoved", "Name", "RemoveTime", "UpdateTime" },
+                values: new object[] { 3, new DateTime(2023, 8, 25, 21, 9, 51, 234, DateTimeKind.Local).AddTicks(6997), false, "Customer", null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserInRoles_RoleId",

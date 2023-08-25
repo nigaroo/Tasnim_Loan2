@@ -142,6 +142,29 @@ namespace Tasnim_Loan.Persistence.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            InsertTime = new DateTime(2023, 8, 25, 21, 9, 51, 220, DateTimeKind.Local).AddTicks(680),
+                            IsRemoved = false,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            InsertTime = new DateTime(2023, 8, 25, 21, 9, 51, 234, DateTimeKind.Local).AddTicks(6488),
+                            IsRemoved = false,
+                            Name = "Operator"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            InsertTime = new DateTime(2023, 8, 25, 21, 9, 51, 234, DateTimeKind.Local).AddTicks(6997),
+                            IsRemoved = false,
+                            Name = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Users.User", b =>
@@ -195,9 +218,6 @@ namespace Tasnim_Loan.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("InsertTime")
                         .HasColumnType("datetime2");

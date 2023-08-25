@@ -33,7 +33,7 @@ namespace Tasnim_Loan.Application.Sevices.Loans.Queries.GetLoans
                     Closed = loan.Closed,
                     Cleared = loan.Cleared,
                     Cleared_Date = loan.Cleared_Date,
-                    Customer_ID = loan.Customer_ID,
+              //      Customer_ID = loan.Customer_ID,
                 };
                 results.Add(result);
             }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Tasnim_Loan.Application.Interfaces.FacadPatterns;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class LoanController : Controller
     {
-        private readonly ILoanFacad _LoanFacad;
+       /* private readonly ILoanFacad _LoanFacad;
         public LoanController(ILoanFacad productFacad)
         {
             _LoanFacad = productFacad;
@@ -15,6 +14,6 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         {
             return View(_LoanFacad.GetLoansService.Execute());
         }
-
+       */
     }
 }
