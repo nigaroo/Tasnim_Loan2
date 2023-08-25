@@ -12,15 +12,13 @@ namespace Tasnim_Loan.Application.Sevices.Loans.FacadPatterns
 {
     public class LoanFacad : ILoanFacad
     {
+        private readonly IDataBaseContext _context;
         public AddNewLoanService AddNewLoanService { get; }
-
-
 
         public LoanFacad(AddNewLoanService addNewLoanService)
         {
             AddNewLoanService = addNewLoanService;
         }
-
 
         private IGetLoansService _getLoansService;
         public IGetLoansService GetLoansService

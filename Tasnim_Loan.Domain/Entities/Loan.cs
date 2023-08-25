@@ -1,4 +1,4 @@
-﻿//using Tasnim_Loan.Domain.Entities.Commons;
+﻿    //using Tasnim_Loan.Domain.Entities.Commons;
 using Tasnim_Loan.Domain.Entities.Commons;
 using System;
 using System.ComponentModel.DataAnnotations;

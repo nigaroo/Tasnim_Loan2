@@ -11,21 +11,10 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         {
             _LoanFacad = productFacad;
         }
-        public IActionResult Index(long? parentId)
+        public IActionResult Index()
         {
-            return View(_LoanFacad.GetCategoriesService.Execute(parentId).Data);
+            return View(_LoanFacad.GetLoansService.Execute());
         }
-        [HttpGet]
-        public IActionResult AddNewCategory(long? parentId)
-        {
-            ViewBag.parentId = parentId;
-            return View();
-        }
-        [HttpPost]
-        public IActionResult AddNewCategory(long? ParentId, string Name)
-        {
-            var result = _LoanFacad.AddNewCategoryService.Execute(ParentId, Name);
-            return Json(result);
-        }
+
     }
 }

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Tasnim_Loan.Domain.Entities.Commons
 {
-
     public abstract class BaseEntity<TKey>  
     {
         [Key]

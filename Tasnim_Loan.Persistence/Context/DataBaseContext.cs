@@ -23,9 +23,6 @@ namespace Tasnim_Loan.Persistence.Context
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
 
-
-
-
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             return await base.SaveChangesAsync(cancellationToken);
@@ -33,11 +30,8 @@ namespace Tasnim_Loan.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             //-- عدم نمایش اطلاعات حذف شده
             ApplyQueryFilter(modelBuilder);
-
-
         }
         private void ApplyQueryFilter(ModelBuilder modelBuilder)
         {

@@ -16,10 +16,6 @@ namespace Tasnim_Loan.Application.Interfaces.Contexts
          DbSet<Transaction> Transactions { get; set; }
          DbSet<User> Users { get; set; }
 
-
-
-
-
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken());
