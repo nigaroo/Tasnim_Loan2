@@ -15,10 +15,10 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser
         }
 
 
-        public ResultDto Execute(int UserId)
+        public ResultDto Execute(int ID)
         {
  
-            var customer = _context.Users.Find(UserId);
+            var customer = _context.Userss.Find(ID);
             if (customer == null)
             {
                 return new ResultDto

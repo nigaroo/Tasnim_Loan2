@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Tasnim_Loan.Domain.Entities.Commons;
-
 
 namespace Tasnim_Loan.Domain.Entities.Users
 {
-    public class User : BaseEntity
+    public class NewUser:BaseEntity
     {
-
         [Required]
         public string FullName { get; set; }
 

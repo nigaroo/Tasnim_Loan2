@@ -23,7 +23,8 @@ namespace Tasnim_Loan.Persistence.Context
         //table haro bayad be entityframework beshnasonim
         public DbSet<Loan> Loans { get; set; }        //harchi bad az <> benevisi db oon ro ba hamoon name sh
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<User> Users { get; set; }
+     //   public DbSet<User> Users { get; set; }
+        public DbSet<NewUser> Userss { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserInRole> UserInRoles { get; set; }
 
@@ -39,6 +40,10 @@ namespace Tasnim_Loan.Persistence.Context
             SeedData(modelBuilder);
 
 
+          
+
+
+
             // اعمال ایندکس بر روی فیلد ایمیل
             // اعمال عدم تکراری بودن ایمیل
             //  modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
@@ -49,7 +54,7 @@ namespace Tasnim_Loan.Persistence.Context
 
         private void ApplyQueryFilter(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<NewUser>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Role>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<UserInRole>().HasQueryFilter(p => !p.IsRemoved);
             //  modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsRemoved);
@@ -62,7 +67,7 @@ namespace Tasnim_Loan.Persistence.Context
             modelBuilder.Entity<Role>().HasData(new Role { ID = 3, Name = nameof(UserRoles.Customer) });
 
         }
-
+     
 
     }
 }

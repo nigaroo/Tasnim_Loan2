@@ -43,7 +43,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
 
 
 
-            var user = _context.Users
+            var user = _context.Userss
           .Include(p => p.UserInRoles)
           .ThenInclude(p => p.Role)
           .Where(p => p.FullName == FullName
@@ -52,12 +52,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
 
 
 
-            /*      .Include(p => p.UserInRoles)
-             .ThenInclude(p => p.Role)
-             .Where(p => p.Email.Equals(Username)
-         && p.IsActive == true)
-         .FirstOrDefault();
-            */
+            
 
             if (user == null)
             {
@@ -72,7 +67,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
             }
 
             var passwordHasher = new PasswordHasher();
-            // bool resultVerifyPassword = user.Password == Password;
+           //  bool resultVerifyPassword = user.Password == Password;
             bool resultVerifyPassword = passwordHasher.VerifyPassword(user.Password, Password);
             if (resultVerifyPassword == false)
             {

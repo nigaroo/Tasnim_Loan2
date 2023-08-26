@@ -26,7 +26,7 @@
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput"> نام و نام خانوادگی</label>
-                                            <input type="text" class="form-control" id="fullname">
+                                            <input type="text" class="form-control" id="FullName">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -56,7 +56,7 @@
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">توضیحات</label>
-                                            <input type="text" class="form-control" id="description">
+                                            <input type="text" class="form-control" id="Description">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -106,23 +106,23 @@
             }).then((result) => {
                 if (result.value) {
 
-                    var fullname = $("#fullname").val();
+                    var FullName = $("#FullName").val();
                     var Password = $("#Password").val();
                     var RePassword = $("#RePassword").val();
                     var National_Number = $("#National_Number").val();
                     var Creation_Date = $("#Creation_Date").val();
                     var Unique_Payment_Identifier = $("#Unique_Payment_Identifier").val();
-                    var description = $("#description").val();
+                    var Description = $("#Description").val();
                     var RoleId = $("#RoleId").val();
 
                     var postData = {
-                        'fullname': fullname,
+                        'FullName': FullName,
                         'Password': Password,
                         'RePassword': RePassword,
                         'National_Number': National_Number,
                         'Creation_Date': Creation_Date,
                         'Unique_Payment_Identifier': Unique_Payment_Identifier,
-                        'description': description,
+                        'Description': Description,
                         'RoleId': RoleId,
                     };
 

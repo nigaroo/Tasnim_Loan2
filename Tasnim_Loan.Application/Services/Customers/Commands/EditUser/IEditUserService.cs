@@ -22,7 +22,7 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.EditUser
         }
         public ResultDto Execute(RequestEdituserDto request)
         {
-            var user = _context.Users.Find(request.ID);
+            var user = _context.Userss.Find(request.ID);
             if (user == null)
             {
                 return new ResultDto
@@ -34,7 +34,7 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.EditUser
 
             //فیلد های نیاز به ویرایش 
             user.FullName = request.FullName;
-            user.Password = request.Password;
+       //     user.Password = request.Password;
             user.National_Number = request.National_Number;
             user.Unique_Payment_Identifier = request.Unique_Payment_Identifier;
             user.Description = request.Description;
@@ -56,7 +56,7 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.EditUser
     {
         public int ID { get; set; }
         public string FullName { get; set; }
-        public string Password { get; set; }
+      //  public string Password { get; set; }
         public string National_Number { get; set; }
         public int Unique_Payment_Identifier { get; set; }
         public string Description { get; set; }
