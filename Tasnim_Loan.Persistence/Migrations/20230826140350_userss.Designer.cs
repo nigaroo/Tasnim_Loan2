@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasnim_Loan.Persistence.Context;
 
 namespace Tasnim_Loan.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230826140350_userss")]
+    partial class userss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,21 +194,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 8, 26, 23, 10, 2, 385, DateTimeKind.Local).AddTicks(904),
+                            InsertTime = new DateTime(2023, 8, 26, 17, 33, 47, 795, DateTimeKind.Local).AddTicks(6184),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 8, 26, 23, 10, 2, 397, DateTimeKind.Local).AddTicks(8824),
+                            InsertTime = new DateTime(2023, 8, 26, 17, 33, 47, 810, DateTimeKind.Local).AddTicks(7655),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 8, 26, 23, 10, 2, 397, DateTimeKind.Local).AddTicks(9397),
+                            InsertTime = new DateTime(2023, 8, 26, 17, 33, 47, 810, DateTimeKind.Local).AddTicks(8667),
                             IsRemoved = false,
                             Name = "Customer"
                         });

@@ -16,7 +16,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers
         }
         public ResultGetCustomerDto Execute(RequestGetCustomerDto request)
         {
-            var users = _context.Users.AsQueryable();
+            var users = _context.Userss.AsQueryable();
             if (!string.IsNullOrWhiteSpace(request.SearchKey))
             {
                 users = users.Where(p =>
@@ -35,12 +35,11 @@ namespace Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers
                 FullName = p.FullName,
                 Password = p.Password,
                 National_Number = p.National_Number,
-                InsertTime = p.InsertTime,
                 Unique_Payment_Identifier = p.Unique_Payment_Identifier,
                 Description = p.Description,
                 IsActive = p.IsActive,
+                InsertTime = p.InsertTime,
 
-                
 
             }).ToList();
 

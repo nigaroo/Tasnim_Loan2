@@ -9,7 +9,7 @@ namespace Tasnim_Loan.Domain.Entities.Users
 
     {
         //  public int Idrole { get; set; }
-        public virtual User User { get; set; }
+        public virtual NewUser User { get; set; }
         public int UserId { get; set; }
 
         public virtual Role Role { get; set; }

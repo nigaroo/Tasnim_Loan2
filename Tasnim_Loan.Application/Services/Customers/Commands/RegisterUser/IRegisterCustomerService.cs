@@ -77,7 +77,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
                     };
                 }
 
-                if (request.Unique_Payment_Identifier == 0)
+             /*   if (request.Unique_Payment_Identifier == 0)
                 {
                     return new ResultDto<ResultRegisterUserDto>()
                     {
@@ -89,7 +89,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
                         Message = "شناسه منحصر به فرد پرداخت  را وارد نمایید"
                     };
                 }
-
+             */
 
 
 
@@ -98,7 +98,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
 
                 // piadeesazi method execute
 
-                User user = new User()
+                NewUser user = new NewUser()
                 {
                     FullName=request.FullName,
                     Password = hashedPassword,
@@ -123,9 +123,9 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
                          }
                          user.UserInRoles = userInRoles;
 
-                         _context.Users.Add(user);
+                         _context.Userss.Add(user);
            
-                    _context.SaveChanges();
+                         _context.SaveChanges();
 
                 return new ResultDto<ResultRegisterUserDto>()
                 {

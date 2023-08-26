@@ -8,6 +8,7 @@ using Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser;
 using Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers;
 using Tasnim_Loan.Application.Services.Customers.Queries.GetRoles;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
@@ -51,6 +52,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Roles = new SelectList(_getRolesService.Execute().Data, "ID", "Name");
             return View();
         }
 
@@ -63,6 +65,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             {
                 FullName = Fullname,
                 Password = Password,
+                RePasword= RePassword,
                 National_Number = National_Number,
                 Unique_Payment_Identifier = Unique_Payment_Identifier,
                 Description = Description,
@@ -79,24 +82,24 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return Json(result);
         }
         [HttpPost]
-        public IActionResult Delete(int UseerId)
+        public IActionResult Delete(int UserId)
         {
-            return Json(_removeUserService.Execute(UseerId));
+            return Json(_removeUserService.Execute(UserId));
         }
         [HttpPost]
-        public IActionResult UserSatusChange(int UseerId)
+        public IActionResult UserSatusChange(int UserId)
         {
-            return Json(_userSatusChangeService.Execute(UseerId));
+            return Json(_userSatusChangeService.Execute(UserId));
         }
         [HttpPost]
-        public IActionResult Edit(int ID, string Fullname, string Password, string National_Number, int Unique_Payment_Identifier, string Description, DateTime InsertionTime)
+        public IActionResult Edit(int ID, string Fullname,  string National_Number, int Unique_Payment_Identifier, string Description, DateTime InsertionTime)
         {
 
             return Json(_editUserService.Execute(new RequestEdituserDto
             {
                 ID = ID,
                 FullName = Fullname,
-                Password = Password,
+               // Password = Password,
                 National_Number = National_Number,
                 Unique_Payment_Identifier = Unique_Payment_Identifier,
                 Description = Description,

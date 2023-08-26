@@ -32,7 +32,7 @@ namespace Tasnim_Loan.Domain.Entities
         public int User_ID { get; set; }
 
         [ForeignKey("User_ID")]
-        public User User { get; set; }  // Navigation property for the user associated with this loan
+        public NewUser User { get; set; }  // Navigation property for the user associated with this loan
         
 
     }

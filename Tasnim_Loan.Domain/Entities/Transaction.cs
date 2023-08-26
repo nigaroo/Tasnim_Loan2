@@ -20,7 +20,7 @@ namespace Tasnim_Loan.Domain.Entities
         [Required]
         public int User_ID { get; set; }
         [ForeignKey("User_ID")]
-        public User User { get; set; }
+        public NewUser User { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange
 {
     public interface IUserSatusChangeService
     {
-        ResultDto Execute(int UserId);
+        ResultDto Execute(int ID);
     }
 
     public class UserSatusChangeService : IUserSatusChangeService
@@ -23,9 +23,9 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange
             _context = context;
         }
 
-        public ResultDto Execute(int UserId)
+        public ResultDto Execute(int ID)
         {
-            var customer = _context.Users.Find(UserId);
+            var customer = _context.Userss.Find(ID);
             if (customer == null)
             {
                 return new ResultDto

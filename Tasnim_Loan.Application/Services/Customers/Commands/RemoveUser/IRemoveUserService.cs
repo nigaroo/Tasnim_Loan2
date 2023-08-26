@@ -8,6 +8,6 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser
 {
     public interface IRemoveUserService
     {
-        ResultDto Execute(int UseerId);
+        ResultDto Execute(int UserId);
     }
 }
