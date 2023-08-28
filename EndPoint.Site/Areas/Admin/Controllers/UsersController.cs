@@ -9,10 +9,12 @@ using Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers;
 using Tasnim_Loan.Application.Services.Customers.Queries.GetRoles;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class UsersController : Controller
     {
         private readonly IGetCustomersService _getCustomerService;
@@ -99,7 +101,6 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             {
                 ID = ID,
                 FullName = Fullname,
-               // Password = Password,
                 National_Number = National_Number,
                 Unique_Payment_Identifier = Unique_Payment_Identifier,
                 Description = Description,
