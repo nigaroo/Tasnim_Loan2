@@ -9,6 +9,8 @@ namespace Tasnim_Loan.Domain.Entities
 {
     public class Loan : BaseEntity
     {
+        [Required]
+        public string FullName { get; set; }
 
         [Required]
         public int Total_Amount { get; set; }

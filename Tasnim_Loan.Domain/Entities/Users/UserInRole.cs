@@ -8,7 +8,7 @@ namespace Tasnim_Loan.Domain.Entities.Users
     public class UserInRole :BaseEntity
 
     {
-        //  public int Idrole { get; set; }
+
         public virtual NewUser User { get; set; }
         public int UserId { get; set; }
 
