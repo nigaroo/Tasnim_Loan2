@@ -24,6 +24,7 @@ using Tasnim_Loan.Application.Services.Customers.Commands.UserLogin;
 using Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange;
 using Tasnim_Loan.Application.Services.Customers.Commands.EditUser;
 using Tasnim_Loan.Application.Services.Customers.Queries.GetRoles;
+using Tasnim_Loan.Common.Roles;
 
 namespace EndPoint.Site
 {
@@ -39,6 +40,15 @@ namespace EndPoint.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(UserRoles.Admin, policy => policy.RequireRole(UserRoles.Admin));
+                options.AddPolicy(UserRoles.Customer, policy => policy.RequireRole(UserRoles.Customer));
+                options.AddPolicy(UserRoles.Operator, policy => policy.RequireRole(UserRoles.Operator));
+            });
+
+
+
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -46,8 +56,9 @@ namespace EndPoint.Site
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-             options.LoginPath = new PathString("/");
-             options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+                options.LoginPath = new PathString("/Authentication/Signin");
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+                options.AccessDeniedPath = new PathString("/Authentication/Signin");
             });
 
 
@@ -87,8 +98,9 @@ namespace EndPoint.Site
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+          
 
             app.UseEndpoints(endpoints =>
             {

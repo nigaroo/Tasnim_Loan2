@@ -82,18 +82,19 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
                 };
             }
 
-            var roles = "";
+            List<string> roles = new List<string>();
             foreach (var item in user.UserInRoles)
             {
-                roles += $"{item.Role.Name}";
+                roles.Add(item.Role.Name);
             }
-
             return new ResultDto<ResultUserloginDto>()
             {
                 Data = new ResultUserloginDto()
                 {
+                    Roles = roles,
                     ID = user.ID,
                     FullName = user.FullName
+                
 
                 },
                 IsSuccess = true,
@@ -107,7 +108,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.UserLogin
     public class ResultUserloginDto
     {
         public int ID { get; set; }
-        public string Roles { get; set; }
+        public List<string> Roles { get; set; }
         public string FullName { get; set; }
     }
 }
