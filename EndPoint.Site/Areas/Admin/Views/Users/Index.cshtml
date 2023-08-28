@@ -89,6 +89,7 @@
     </div>
 </div>
 
+
 @section Scripts
     {
 
@@ -96,8 +97,6 @@
     <script src="~/Sweetalert2/sweetalert2.min.js"></script>
 
     <script>
-
-
         function DeleteUser(UserId) {
             swal.fire({
                 title: 'حذف کاربر',
@@ -113,44 +112,37 @@
                     var postData = {
                         'UserId': UserId,
                     };
-
                     $.ajax({
                         contentType: 'application/x-www-form-urlencoded',
                         dataType: 'json',
                         type: "POST",
                         url: "Delete",
                         data: postData,
-                        success: function (data) {
+                        success: function(data) {
                             if (data.isSuccess == true) {
                                 swal.fire(
                                     'موفق!',
                                     data.message,
                                     'success'
-                                ).then(function (isConfirm) {
+                                ).then(function(isConfirm) {
                                     location.reload();
                                 });
                             }
                             else {
-
                                 swal.fire(
                                     'هشدار!',
                                     data.message,
                                     'warning'
                                 );
-
                             }
                         },
-                        error: function (request, status, error) {
+                        error: function(request, status, error) {
                             alert(request.responseText);
                         }
-
                     });
-
                 }
             })
         }
-
-
         function UserSatusChange(UserId) {
             swal.fire({
                 title: 'تغییر وضعیت کاربر',
@@ -163,72 +155,70 @@
                 cancelButtonText: 'خیر'
             }).then((result) => {
                 if (result.value) {
-
                     var postData = {
                         'UserId': UserId,
                     };
-
                     $.ajax({
                         contentType: 'application/x-www-form-urlencoded',
                         dataType: 'json',
                         type: "POST",
                         url: "UserSatusChange",
                         data: postData,
-                        success: function (data) {
+                        success: function(data) {
                             if (data.isSuccess == true) {
                                 swal.fire(
                                     'موفق!',
                                     data.message,
                                     'success'
-                                ).then(function (isConfirm) {
+                                ).then(function(isConfirm) {
                                     location.reload();
                                 });
                             }
                             else {
-
                                 swal.fire(
                                     'هشدار!',
                                     data.message,
                                     'warning'
                                 );
-
                             }
                         },
-                        error: function (request, status, error) {
+                        error: function(request, status, error) {
                             alert(request.responseText);
                         }
-
                     });
-
                 }
             })
         }
-
-
         function Edituser() {
-
-            var userId = $("#Edit_UserId").val();
-            var fullName = $("#Edit_Fullname").val();
+            var ID = $("#Edit_UserId").val();
+            var Fullname = $("#Edit_Fullname").val();
+            var National_Number = $("#Edit_National_Number").val();
+            var Unique_Payment_Identifier = $("#Edit_Unique_Payment_Identifier").val();
+            var Description = $("#Edit_Description").val();
+            var InsertionTime = $("#Edit_InsertionTime").val();
 
             var postData = {
-                'UserId': userId,
-                'FullName': fullName,
+                'ID': ID,
+                'Fullname': Fullname,
+                'National_Number': National_Number,
+                'Unique_Payment_Identifier': Unique_Payment_Identifier,
+                'Description': Description,
+                'InsertionTime': InsertionTime,
+
             };
-
-
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'json',
                 type: "POST",
                 url: "Edit",
                 data: postData,
-                success: function (data) {
+                success: function(data) {
                     if (data.isSuccess == true) {
                         swal.fire(
                             'موفق!',
                             data.message,
                             'success'
-                        ).then(function (isConfirm) {
+                        ).then(function(isConfirm) {
                             location.reload();
                         });
                     }
@@ -240,24 +230,25 @@
                         );
                     }
                 },
-                error: function (request, status, error) {
+                error: function(request, status, error) {
                     alert(request.responseText);
                 }
             });
-
             $('#EditUser').modal('hide');
-
         }
+        function ShowModalEdituser(ID, Fullname, National_Number, Unique_Payment_Identifier, Description, InsertTime) {
+            //ورودی هایی که رگفته رو بر روی edit_..  ست میکنه
 
+            $('#Edit_UserId').val(ID,); // Set the hidden field value for UserId
+            $('#Edit_Fullname').val(Fullname);
+            $('#Edit_National_Number').val(National_Number);
+            $('#Edit_Unique_Payment_Identifier').val(Unique_Payment_Identifier);
+            $('#Edit_Description').val(Description);
+            $('#Edit_InsertionTime').val(InsertTime);
 
-        function ShowModalEdituser(UserId, fullName) {
-            $('#Edit_Fullname').val(fullName)
-            $('#Edit_UserId').val(UserId)
 
             $('#EditUser').modal('show');
-
         }
-
     </script>
 
 
@@ -268,7 +259,7 @@
 }
 
 
-@section Modals
+    @section Modals
     {
     <!-- Modal Edit User -->
     <div class="modal fade" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -288,6 +279,31 @@
                             <input type="text" class="form-control" id="Edit_Fullname">
                         </fieldset>
                     </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <!-- <input type="hidden" id="Edit_Password" />-->
+                            <label for="Edit_National_Number">شماره ملی</label>
+                            <input type="tel" class="form-control" id="Edit_National_Number">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Unique_Payment_Identifier">شناسه منحصر به فرد پرداخت</label>
+                            <input type="text" class="form-control" id="Edit_Unique_Payment_Identifier">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Description">توضیحات</label>
+                            <input type="text" class="form-control" id="Edit_Description">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_InsertionTime">تاریخ ایجاد</label>
+                            <input type="text" class="form-control" id="Edit_InsertionTime">
+                        </fieldset>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary" data-dismiss="modal">بستن</a>
@@ -297,3 +313,7 @@
         </div>
     </div>
 }
+
+
+
+

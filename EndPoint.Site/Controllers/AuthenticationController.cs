@@ -36,12 +36,12 @@ namespace EndPoint.Site.Controllers
         [HttpPost]
         public IActionResult Signup(SignupViewModel request)
         {
-  
+
 
 
             if (string.IsNullOrWhiteSpace(request.FullName) ||
                 string.IsNullOrWhiteSpace(request.Password) ||
-                string.IsNullOrWhiteSpace(request.RePassword)||
+                string.IsNullOrWhiteSpace(request.RePassword) ||
                 string.IsNullOrWhiteSpace(request.National_Number))
             {
                 return Json(new ResultDto { IsSuccess = false, Message = "لطفا تمامی موارد رو ارسال نمایید" });
@@ -69,7 +69,7 @@ namespace EndPoint.Site.Controllers
                 Password = request.Password,
                 RePasword = request.RePassword,
                 National_Number = request.National_Number,
-               // Unique_Payment_Identifier = 0,
+                // Unique_Payment_Identifier = 0,
                 roles = new List<RolesInRegisterUserDto>()
                 {
                     new RolesInRegisterUserDto { Id = 3},
@@ -111,7 +111,7 @@ namespace EndPoint.Site.Controllers
         }
 
         [HttpPost]
-        public IActionResult Signin(string Fullname, string Password,string url = "/")
+        public IActionResult Signin(string Fullname, string Password, string url = "/")
         {
             var signupResult = _userLoginService.Execute(Fullname, Password);
             if (signupResult.IsSuccess == true)
@@ -119,14 +119,20 @@ namespace EndPoint.Site.Controllers
                 var claims = new List<Claim>()
                {
                   new Claim(ClaimTypes.NameIdentifier,signupResult.Data.ID.ToString()),
-                   new Claim("Fullname", Fullname),
+                //  new Claim("Fullname", Fullname),
+                  new Claim(ClaimTypes.Name, signupResult.Data.FullName),
+                  };
 
-               };
+                foreach (var item in signupResult.Data.Roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, item));
+                }
+
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 var properties = new AuthenticationProperties()
                 {
-                    IsPersistent = true,
+                    IsPersistent = true,     //مرا بخاطر بسپار در صفحه ی لاگین 
                     ExpiresUtc = DateTime.Now.AddDays(5),
                 };
                 HttpContext.SignInAsync(principal, properties);
