@@ -40,13 +40,13 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Index(string searchkey, int page = 1)
+        public IActionResult Index(string serchkey, int page = 1)
         {
             return View(_getCustomerService.Execute(new RequestGetCustomerDto
             {
 
                 Page = page,
-                SearchKey = searchkey,
+                SearchKey = serchkey,
 
             }));
         }

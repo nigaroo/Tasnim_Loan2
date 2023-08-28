@@ -19,12 +19,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers
             var users = _context.Userss.AsQueryable();
             if (!string.IsNullOrWhiteSpace(request.SearchKey))
             {
-                users = users.Where(p =>
-                   p.ID==request.SearchInt ||
-                   p.FullName.Contains(request.SearchKey) ||
-                   p.National_Number.Contains(request.SearchKey) ||
-                   p.Unique_Payment_Identifier == request.SearchInt ||
-                   p.Description.Contains(request.SearchKey));
+                users = users.Where(p => p.FullName.Contains(request.SearchKey));
 
             }
             // this is about pageingation in  Commom
