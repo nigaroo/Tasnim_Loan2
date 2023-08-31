@@ -7,7 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tasnim_Loan.Application.Interfaces.Contexts;
 using Tasnim_Loan.Common.Roles;
+using Tasnim_Loan.Common.Type;
 using Tasnim_Loan.Domain.Entities;
+using Tasnim_Loan.Domain.Entities.Loans;
 using Tasnim_Loan.Domain.Entities.Users;
 
 namespace Tasnim_Loan.Persistence.Context
@@ -23,10 +25,11 @@ namespace Tasnim_Loan.Persistence.Context
         //table haro bayad be entityframework beshnasonim
         public DbSet<Loan> Loans { get; set; }        //harchi bad az <> benevisi db oon ro ba hamoon name sh
         public DbSet<Transaction> Transactions { get; set; }
-     //   public DbSet<User> Users { get; set; }
         public DbSet<NewUser> Userss { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserInRole> UserInRoles { get; set; }
+        public DbSet<Typee> Types { get; set; }
+        public DbSet<LoanInType> LoanInTypes { get; set; }
 
 
 
@@ -44,10 +47,7 @@ namespace Tasnim_Loan.Persistence.Context
 
 
 
-            // اعمال ایندکس بر روی فیلد ایمیل
-            // اعمال عدم تکراری بودن ایمیل
-            //  modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
-            //unique paymenttttttttttttttttttttttttt
+          
             //-- عدم نمایش اطلاعات حذف شده
             ApplyQueryFilter(modelBuilder);
         }
@@ -57,7 +57,9 @@ namespace Tasnim_Loan.Persistence.Context
             modelBuilder.Entity<NewUser>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Role>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<UserInRole>().HasQueryFilter(p => !p.IsRemoved);
-            //  modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Loan>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Typee>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<LoanInType>().HasQueryFilter(p => !p.IsRemoved);
         }
 
         private void SeedData(ModelBuilder modelBuilder)
@@ -66,6 +68,10 @@ namespace Tasnim_Loan.Persistence.Context
             modelBuilder.Entity<Role>().HasData(new Role { ID = 2, Name = nameof(UserRoles.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { ID = 3, Name = nameof(UserRoles.Customer) });
 
+
+            modelBuilder.Entity<Typee>().HasData(new Typee { ID = 1, Name = nameof(LoanTypes.treatment) });
+            modelBuilder.Entity<Typee>().HasData(new Typee { ID = 2, Name = nameof(LoanTypes.Housing) });
+            modelBuilder.Entity<Typee>().HasData(new Typee { ID = 3, Name = nameof(LoanTypes.Others) });
         }
      
 

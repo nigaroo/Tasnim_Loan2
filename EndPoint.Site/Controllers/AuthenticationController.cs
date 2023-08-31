@@ -140,6 +140,11 @@ namespace EndPoint.Site.Controllers
                 // Store the user ID using UserIdSingleton
                 UserIdSingleton.Instance.SetUserId(signupResult.Data.ID);
 
+           /*     int userId = UserIdSingleton.Instance.GetUserId();
+                ViewBag.UserId = userId;
+                return View();
+             */ 
+
             }
             return Json(signupResult);
         }

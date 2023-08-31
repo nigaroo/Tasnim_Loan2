@@ -1,0 +1,528 @@
+/* Template: landcity7
+    Align: RTL
+    Author: Sitranet Co.
+    URL: https://www.sitranet.com
+    Version: 1.0.0
+*/
+
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('../fonts/IRANSans/fontiran.css')
+}
+body {
+    font-family: IRANSans;
+    background-color: #F4F4FC;
+    direction: rtl;
+    text-align: right; }
+  
+  :focus,
+  button:focus,
+  input:focus {
+    box-shadow: none !important;
+    outline: none !important; }
+  
+  a:hover {
+    text-decoration: none; }
+  
+    /* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3647d2 #f8f8fae8;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f8f8fa;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3647d2;
+  border-radius: 20px;
+  border: 1px solid #f8f8fa;
+}
+
+  .df-regulation h4, #features h4, #df-use h4, #questions h4 {
+    font-size: 22px;
+    color: #042340;
+    font-weight: bold;
+    line-height: 1.8; }
+    .df-regulation h4 span, #features h4 span, #df-use h4 span, #questions h4 span {
+      display: inline-block;
+      background-color: rgba(254, 209, 46, 0.5);
+      height: 7px;
+      line-height: 7px;
+      border-radius: 8px; }
+	  .row.justify-content-center.justify-content-lg-start {
+    padding-top: 50px;
+}
+    @media (max-width: 568px) {
+      .df-regulation h4, #features h4, #df-use h4, #questions h4 {
+        font-size: 19px;
+        text-align: justify; } }
+  
+  .df-regulation p {
+    line-height: 2;
+    overflow-y: auto;
+    direction: rtl;
+    padding: 0 1em; }
+    .df-regulation p::-webkit-scrollbar {
+      width: 3px; }
+    .df-regulation p::-webkit-scrollbar-track {
+      background-color: #e9e9e9;
+      border-radius: 4px; }
+    .df-regulation p::-webkit-scrollbar-thumb {
+      background: #A0A6B2;
+      border-radius: 50rem;
+      height: 120px; }
+  
+  #df-intro {
+    position: relative;
+    padding-bottom: 6rem; }
+    #df-intro > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      margin: auto; }
+      @media (min-width: 1367px) {
+        #df-intro > img {
+          display: none; } }
+  
+  .df-introBg {
+    position: relative;
+    top: -30px;
+    padding-top: 7rem;
+    padding-bottom: 8rem;
+    background: url(../img/header.svg) no-repeat;
+    background-size: cover;
+    background-position: center; }
+    @media (max-width: 568px) {
+      .df-introBg {
+        width: 94%;
+        padding-top: 5rem; } }
+  
+  .df-introContent h6 {
+    font-size: 22px;
+    color: #1ccd9e;
+    font-weight: bold; }
+  
+  .df-introContent h4 {
+    position: relative;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 2;
+    z-index: 1; }
+    .df-introContent h4 span {
+      border-bottom: 2px solid #fed12e; }
+    .df-introContent h4::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -35px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: #fff;
+      opacity: 10%;
+      z-index: -1; }
+  
+  .df-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    text-align: center; }
+    @media (max-width: 1025px) {
+      .df-actions {
+        padding-left: 0rem !important;
+    }}
+    @media (min-width: 992px) {
+      .df-actions {
+        padding-left: 10rem; } }
+    @media (max-width: 992px) {
+      .df-actions {
+        padding-left: 14rem; } }
+    @media (max-width: 568px) {
+      .df-actions {
+        padding-left: 0; } }
+    @media (max-width: 835px) {
+      .df-actions {
+        padding-left: 0rem;
+    }}    
+    @media (max-width: 768.99px) {
+      .df-actions {
+        justify-content: center; }
+        .df-actions {
+          padding-left: 0rem;
+      } }
+    .df-actions a:nth-of-type(1) {
+      font-size: 16px;
+      color: #ffffff;
+      font-weight: 500;
+      border: 1px solid #ffffff;
+      border-radius: 8px;
+      padding: 6px 30px;
+      margin-left: 10px;
+      transition: 0.3s; }
+      @media (max-width: 417px) {
+        .df-actions a:nth-of-type(1) {
+          margin-bottom: 10px;
+          padding: 6px 35px;
+          margin-left: 0; } }
+    .df-actions a:nth-of-type(1):hover {
+      background-color: #042340;
+      border-color: #042340; }
+    .df-actions a:nth-of-type(2) {
+      font-size: 16px;
+      color: #042340;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 6px 20px;
+      background-color: #fff;
+      transition: 0.3s; }
+    .df-actions a:nth-of-type(2):hover {
+      background-color: #042340;
+      color: #fff; }
+  
+  .df-appmobile {
+    position: relative;
+    z-index: 1; }
+  
+  @media (max-width: 992px) {
+    .pattern1 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 15%;
+      width: 100%; } }
+  
+  .df-appmobileImg {
+    position: relative;
+    z-index: 1; }
+  
+  .df-Commentregulation {
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 50px;
+    margin-top: -350px;
+    position: relative;
+    z-index: 0; }
+    @media (max-width: 992px) {
+      .df-Commentregulation {
+        padding: 258px 50px 50px 50px;
+        margin-top: -368px; } }
+  
+  .df-regulation p {
+    font-size: 16px;
+    color: #4d5760;
+    font-weight: normal;
+    max-height: 159px; }
+    @media (max-width: 568px) {
+      .df-regulation p {
+        font-size: 14px; } }
+  
+  #features h4 {
+    text-align: center; }
+  
+  .df-feature {
+    transition: 0.3s;
+    border-radius: 10px;
+    padding: 27px 22px; }
+    .df-feature:hover {
+      background-color: #fff;
+      box-shadow: 0 6px 12px #cbbebe2f; }
+    .df-feature h6 {
+      font-size: 20px;
+      color: #042340;
+      font-weight: bold;
+      margin-bottom: 10px; }
+      @media (max-width: 568px) {
+        .df-feature h6 {
+          font-size: 17px; } }
+    .df-feature p {
+      font-size: 16px;
+      color: #4d5760;
+      font-weight: normal;
+      line-height: 1.7; }
+      @media (max-width: 568px) {
+        .df-feature p {
+          font-size: 14px; } }
+    .df-feature .df-featureImg {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      background-color: #fed12e;
+      text-align: center;
+      line-height: 60px;
+      margin-bottom: 20px;
+      display: inline-block; }
+  
+  #df-use h4 {
+    text-align: center; }
+    @media (max-width: 568px) {
+      #df-use h4 {
+        text-align: right; } }
+  
+  .df-use {
+    background-color: #fff;
+    border-radius: 20px; }
+  
+  .df-arrows {
+    position: relative; }
+    @media (min-width: 1200px) {
+      .df-arrows::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 0;
+        background: url(../img/arrow.svg) no-repeat;
+        background-size: contain;
+        width: 100%;
+        height: 10px;
+        opacity: 20%; } }
+  
+  .df-use-content {
+    position: relative;
+    margin-bottom: 2rem; }
+    .df-use-content img {
+      display: inline-block;
+      margin-bottom: 20px; }
+    .df-use-content h6 {
+      font-size: 16px;
+      color: #042340;
+      font-weight: bold; }
+    .df-use-content p {
+      font-size: 14px;
+      color: #042340;
+      font-weight: normal; }
+  
+  .df-streching {
+    display: flex;
+    align-items: stretch; }
+  
+  @media (min-width: 1200px) {
+    .df-col-xl-2 {
+      flex: 1 0 16.666667%;
+      max-width: 18.666667%; } }
+  
+  @media (min-width: 1200px) {
+    .df-ctaBg {
+      background: url(../img/cta.png) no-repeat;
+      background-size: 100%;
+      padding: 10rem 0 9rem 4rem; } }
+  
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .df-ctaBg {
+      background: url(../img/cta.png) no-repeat;
+      background-size: 100%;
+      padding: 7rem 0 9rem 4rem; } }
+  
+  .df-cta {
+    position: relative;
+    margin-left: -20px; }
+    @media (min-width: 992px) {
+      .df-cta {
+        text-align: left; } }
+    @media (max-width: 992px) {
+      .df-cta {
+        background-color: #3647d2;
+        border-radius: 20px;
+        padding: 5rem 5rem 4rem 3rem; } }
+    @media (max-width: 992px) {
+      .df-cta::before {
+        content: "";
+        position: absolute;
+        left: 50px;
+        bottom: -50px;
+        background: url(../img/Left.svg) no-repeat;
+        width: 100%;
+        height: 50px; } }
+    .df-cta h4 {
+      position: relative;
+      font-size: 30px;
+      color: #ffffff;
+      font-weight: bold;
+      line-height: 1.5; }
+      @media (max-width: 568px) {
+        .df-cta h4 {
+          font-size: 27px; } }
+      .df-cta h4 img {
+        position: absolute;
+        top: -20px;
+        right: 50px; }
+        @media (max-width: 1200px) {
+          .df-cta h4 img {
+            right: -25px; } }
+    .df-cta p {
+      position: relative;
+      font-size: 20px;
+      color: #fed12e;
+      font-weight: 500;
+      display: inline-block; }
+      @media (max-width: 568px) {
+        .df-cta p {
+          font-size: 17px; } }
+    .df-cta p::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: -19px;
+      bottom: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      background-color: #fed12e; }
+    .df-cta a {
+      font-size: 16px;
+      color: #042340;
+      font-weight: 500;
+      background-color: #fed12e;
+      border-radius: 8px;
+      padding: 7px 15px;
+      display: inline-block;
+      margin-top: 1em; }
+  
+  #questions {
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden; }
+    #questions > img {
+      position: absolute;
+      left: 0;
+      bottom: 0; }
+  
+  .df-faq .card-header {
+    background-color: transparent;
+    border: 0;
+    padding-bottom: 0;
+    padding-right: 0; }
+  
+  .df-faq .card-body {
+    padding-right: 2em;
+    padding-bottom: 0; }
+  
+  .df-faq button {
+    font-size: 16px;
+    color: #0a100d;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-right: 0; }
+  
+  .df-faq i {
+    color: #3547d2; }
+  
+  .df-faq p {
+    font-size: 14px;
+    color: #4d5760;
+    font-weight: normal;
+    text-align: justify;
+    line-height: 2;
+    padding-right: 60px;
+    margin-right: 60px;
+    position: relative; }
+    @media (max-width: 992px) {
+      .df-faq p {
+        padding-right: 20px;
+        margin-right: 20px; } }
+    @media (max-width: 768px) {
+      .df-faq p {
+        margin-right: 9px; } }
+  
+  .df-faq p::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #1076ff; }
+  
+  #accordionExample {
+    position: relative; }
+    #accordionExample > img {
+      position: absolute;
+      top: 0;
+      right: 0; }
+    #accordionExample h4 {
+      text-align: center;
+      font-size: 20px;
+      color: #212529;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 2rem; }
+      @media (max-width: 568px) {
+        #accordionExample h4 {
+          font-size: 18px !important; }
+          .df-introContent h4 {
+            font-size: 20px;
+        } }
+      @media (max-width: 768px) {
+        #accordionExample h4 {
+          font-size: 25px; } }
+  
+  #dv-footer {
+    margin-top: 4rem; }
+  
+  .dv-footer {
+    background-color: #042340;
+    padding: 2rem 0 1rem;
+    border-radius: 20px 20px 0 0;
+    margin-top: 5rem; }
+  
+  .dv-col a {
+    padding-left: 2.5rem; }
+    @media (min-width: 992px) {
+      .dv-col a {
+        border-left: 2px solid #f8f8fa49; } }
+  
+  .dv-icons a {
+    color: #fff;
+    font-size: 25px;
+    transition: 0.3s; }
+    .dv-icons a > i {
+      transition: 0.3s; }
+    .dv-icons a:hover i {
+      transform: translateY(-5px); }
+  
+  .dv-infos span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px; }
+    @media (max-width: 568px) {
+      .dv-infos span {
+        font-size: 14px; } }
+  
+  .dv-infos span:first-of-type {
+    padding-left: 1.5rem;
+    margin-left: 1.5rem; }
+    @media (min-width: 992px) {
+      .dv-infos span:first-of-type {
+        border-left: 2px solid #f8f8fa49; } }
+  
+  .dv-love a,
+  .dv-love span {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 300; }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1230px !important;
+      width: 100%; } }
+  
+  @media (max-width: 1200px) {
+    br {
+      display: none; } }
+  

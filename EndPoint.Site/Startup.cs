@@ -25,6 +25,12 @@ using Tasnim_Loan.Application.Services.Customers.Commands.UserSatusChange;
 using Tasnim_Loan.Application.Services.Customers.Commands.EditUser;
 using Tasnim_Loan.Application.Services.Customers.Queries.GetRoles;
 using Tasnim_Loan.Common.Roles;
+using Tasnim_Loan.Application.Services.Loans.Queries.GetLoans;
+using Tasnim_Loan.Application.Services.Loans.Commands.RegisterLoan;
+using Tasnim_Loan.Application.Services.Loans.Commands.RemoveLoan;
+using Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange;
+using Tasnim_Loan.Application.Services.Loans.Commands.EditLoan;
+using Tasnim_Loan.Application.Services.Loans.Queries.GetTypes;
 
 namespace EndPoint.Site
 {
@@ -73,6 +79,17 @@ namespace EndPoint.Site
             services.AddScoped<IUserSatusChangeService, UserSatusChangeService>();
             services.AddScoped<IEditUserService, EditUserService>();
             services.AddScoped<IGetRolesService, GetRolesService>();
+
+
+            services.AddScoped<IGetLoanService, GetLoanService>();
+            services.AddScoped<IRegisterLoanService, RegisterLoanService>();
+            services.AddScoped<IRemoveLoanService, RemoveLoanService>();
+            services.AddScoped<ILoanStatusChangeService, LoanSatusChangeService>();
+            services.AddScoped<IEditLoanService, EditLoanService>();
+            services.AddScoped<IGetTypesService, GetTypesService>(); 
+
+
+
 
 
             string connectionString = "Data Source= NEGAR; Initial Catalog=Tasnim_LoanDb; Integrated Security=True;";

@@ -1,4 +1,5 @@
-﻿using Tasnim_Loan.Application.Interfaces.Contexts;
+﻿using System;
+using Tasnim_Loan.Application.Interfaces.Contexts;
 using Tasnim_Loan.Common.Dto;
 
 namespace Tasnim_Loan.Application.Services.Customers.Commands.EditUser
@@ -30,7 +31,8 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.EditUser
             user.Unique_Payment_Identifier = request.Unique_Payment_Identifier;
             user.Description = request.Description;
             user.InsertTime = request.InsertionTime;
-           
+
+            user.UpdateTime = DateTime.Now;
             _context.SaveChanges();
 
             return new ResultDto()
