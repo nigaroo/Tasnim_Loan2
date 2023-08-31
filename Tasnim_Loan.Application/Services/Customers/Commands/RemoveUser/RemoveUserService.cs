@@ -30,6 +30,7 @@ namespace  Tasnim_Loan.Application.Services.Customers.Commands.RemoveUser
             customer.RemoveTime = DateTime.Now;
             customer.IsRemoved = true;
             _context.SaveChanges();
+
             return new ResultDto()
             {
                 IsSuccess = true,

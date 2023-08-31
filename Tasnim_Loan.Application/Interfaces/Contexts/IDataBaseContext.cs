@@ -6,18 +6,22 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Tasnim_Loan.Domain.Entities;
+using Tasnim_Loan.Domain.Entities.Loans;
 using Tasnim_Loan.Domain.Entities.Users;
 
 namespace Tasnim_Loan.Application.Interfaces.Contexts
 {
     public interface IDataBaseContext
     {
-       //  DbSet<User> Users { get; set; }
+
          DbSet<NewUser> Userss { get; set; }
          DbSet<Loan> Loans { get; set; }
          DbSet<Transaction> Transactions { get; set; }
          DbSet<Role> Roles { get; set; }
          DbSet<UserInRole> UserInRoles { get; set; }
+         DbSet<Typee> Types { get; set; }
+         DbSet<LoanInType> LoanInTypes { get; set; }
+
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

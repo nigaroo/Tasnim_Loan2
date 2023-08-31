@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tasnim_Loan.Domain.Entities.Commons;
+using Tasnim_Loan.Domain.Entities.Loans;
 
 namespace Tasnim_Loan.Domain.Entities.Users
 {

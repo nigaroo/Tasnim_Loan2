@@ -8,6 +8,7 @@ using Tasnim_Loan.Application.Interfaces.Contexts;
 using Tasnim_Loan.Common;
 using Tasnim_Loan.Common.Dto;
 using Tasnim_Loan.Domain.Entities;
+using Tasnim_Loan.Domain.Entities.Loans;
 using Tasnim_Loan.Domain.Entities.Users;
 
 namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
@@ -77,19 +78,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
                     };
                 }
 
-             /*   if (request.Unique_Payment_Identifier == 0)
-                {
-                    return new ResultDto<ResultRegisterUserDto>()
-                    {
-                        Data = new ResultRegisterUserDto()
-                        {
-                            UserId = 0,
-                        },
-                        IsSuccess = false,
-                        Message = "شناسه منحصر به فرد پرداخت  را وارد نمایید"
-                    };
-                }
-             */
+
 
 
 

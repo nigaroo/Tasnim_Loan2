@@ -1,0 +1,209 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="basic-elements">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="content-header">فرم ثبت نام  وام جدید</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title mb-0">اطلاعات وام جدید را وارد نمایید</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <div class="form">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> نام و نام خانوادگی</label>
+                                            <input type="text" class="form-control" id="FullName">
+                                        </fieldset>
+                                    </div>   
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> شماره پرسنلی </label>
+                                            <input type="text" class="form-control" id="User_ID">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="disabledInput"> مبلغ کل </label>
+                                            <input type="password" class="form-control" id="Total_Amount">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="disabledInput"> شماره وام </label>
+                                            <input type="password" class="form-control" id="Loan_Num">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> تعداد قسط</label>
+                                            <input type="text" class="form-control" id="Payment_Num">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">مبلغ قسط </label>
+                                            <input type="text" class="form-control" id="Payment_Amount">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">ضامن</label>
+                                            <input type="text" class="form-control" id="Guaranty">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">معرف</label>
+                                            <input type="text" class="form-control" id="Introducer">
+                                        </fieldset>
+                                    </div>
+                                       <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">تسویه شده </label>
+                                            <input type="text" class="form-control" id="Cleared">
+                                        </fieldset>
+                                    </div>
+                                 
+                                      <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">تاریخ تسویه </label>
+                                            <input type="text" class="form-control" id="DateCleared">
+                                        </fieldset>
+                                    </div>
+                                      <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicSelect">نوع وام</label>
+                                            <select class="form-control" id="TypeId" name="Type" asp-items="@ViewBag.Type">
+                                            </select>
+                                            <p><small class="text-muted">وام  مورد نظر را تعیین کنید</small></p>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <br />
+                                            <a onclick="Registerloan()" class="btn btn-success col-md-12">تکمیل ثبت نام </a>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts
+    {
+
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+
+  
+    <script>
+        function Registerloan() {
+            swal.fire({
+                title: 'ثبت نام کاربر',
+                text: "آیا میخواهید ثبت نام کاربر را انجام دهید؟",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله ثبت نام انجام شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var FullName = $("#FullName").val();
+                    var User_ID = $("#User_ID").val();
+                    var Total_Amount = $("#Total_Amount").val();
+                    var Loan_Num = $("#Loan_Num").val();
+                    var Payment_Num = $("#Payment_Num").val();
+                    var Payment_Amount = $("#Payment_Amount").val();
+                    var Guaranty = $("#Guaranty").val();
+                    var Introducer = $("#Introducer").val();
+                    var Cleared = $("#Cleared").val();
+
+                    var DateCleared = $("#DateCleared").val();
+                    var TypeId = $("#TypeId").val();
+
+                    var postData = {
+                        'FullName': FullName,
+                        'User_ID': User_ID,
+                        'Total_Amount': Total_Amount,
+                        'Loan_Num': Loan_Num,
+                        'Payment_Num': Payment_Num,
+                        'Payment_Amount': Payment_Amount,
+                        'Guaranty': Guaranty,
+                        'Introducer': Introducer,
+                        'Cleared': Cleared,
+                        'User_ID': User_ID,
+                        'DateCleared': DateCleared,
+                        'TypeId': TypeId,
+                    };
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "Create",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    location.reload();
+                                });
+
+
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                        }
+
+                    });
+
+                }
+            })
+        }
+    </script>
+}
+
+
+
+
+
+
+
+

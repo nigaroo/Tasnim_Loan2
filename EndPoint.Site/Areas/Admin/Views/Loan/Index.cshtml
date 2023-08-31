@@ -1,0 +1,517 @@
+﻿@using Tasnim_Loan.Application.Services.Loans.Queries.GetLoans
+@model ResultGetLoanDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Zero configuration table -->
+        <section id="configuration">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-wrap bar-success">
+                                <h4 class="card-title">لیست وام ها  </h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show">
+                            <div class="card-block card-dashboard">
+                                <p class="card-text">لیست  وام کاربران  تسنیم </p>
+
+                                <form method="get" class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <input type="text" class="form-control" name="searchkey">
+                                        <button class="btn btn-success">جستجو</button>
+                                    </fieldset>
+                                </form>
+
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="col-sm-12">
+                                        <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="ایدی: activate to sort column ascending" style="width: 10%;">ایدی وام </th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="  نام و نام خانوادگی: activate to sort column" style="width: 15%;">نام و نام خانوادگی</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="  نام و نام خانوادگی: activate to sort column" style="width: 15%;">شماره کاربری</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="شماره ملی: activate to sort column ascending" style="width: 15%;"> مبلغ کل</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="شناسه پرداخت منحصر به فرد: activate to sort column ascending" style="width: 20%;">شماره وام</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="توضیحات: activate to sort column ascending" style="width: 25%;">تعداد قسط</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="توضیحات: activate to sort column ascending" style="width: 25%;">مبلغ قسط</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="توضیحات: activate to sort column ascending" style="width: 25%;">ضامن</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="توضیحات: activate to sort column ascending" style="width: 25%;"> معرف</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="توضیحات: activate to sort column ascending" style="width: 25%;">تسویه شده</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label="توضیحات: activate to sort column ascending" style="width: 25%;">تاریخ  تسویه</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="none" aria-label=" تاریخ ایجاد: activate to sort column ascending" style="width: 15%;">تاریخ ایجاد</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="عملیات: activate to sort column" style="width: 15%;"></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="عملیات: activate to sort column" style="width: 15%;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model.Loans)
+                                                {
+                                                    <tr role="row" class="odd">
+
+                                                        <td class="sorting_1">@item.ID</td>
+                                                        <td>@item.FullName</td>
+                                                        <td>@item.User_ID</td>
+                                                        <td>@item.Total_Amount</td>
+                                                        <td>@item.Loan_Num</td>
+                                                        <td>@item.Payment_Num</td>
+                                                        <td>@item.Payment_Amount</td>
+                                                        <td>@item.Guaranty</td>
+                                                        <td>@item.Introducer</td>
+                                                        <td>@item.Cleared</td>
+                                                        <td>@item.DateCleared</td>
+                                                        <td>@item.InsertTime</td>
+
+
+                                                        <td>
+                                                            <button class="btn btn-info" onclick="ShowModalEditloan('@item.ID', '@item.FullName','@item.User_ID', '@item.Total_Amount', '@item.Loan_Num', '@item.Payment_Num','@item.Payment_Amount','@item.Guaranty','@item.Introducer','@item.Cleared','@item.DateCleared','@item.InsertTime')">ویرایش</button>
+                                                            <button class="btn btn-danger" onclick="DeleteLoan('@item.ID')">حذف</button>
+                                                            @if (item.Accept)
+                                                            {
+                                                                <button class="btn btn-warning" onclick="LoanSatusChange('@item.ID')"> رد درخواست</button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button class="btn btn-info" onclick="LoanSatusChange('@item.ID')"> تائید درخواست</button>
+                                                            }
+
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش 1 تا 10 از 57 سطرها</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0" class="page-link">بعدی</a></li></ul></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+
+
+
+
+    <script>
+
+        function DeleteLoan(LoanId) {
+            swal.fire({
+                title: 'حذف کاربر',
+                text: "کاربر گرامی از حذف کاربر مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#7cacbe',
+                confirmButtonText: 'بله ، کاربر حذف شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+                    var postData = {
+                        'LoanId': LoanId,
+                    };
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "Delete",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    location.reload();
+                                });
+                            }
+                            else {
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                        }
+                    });
+                }
+            })
+        }
+        function LoanSatusChange(LoanId) {
+            swal.fire({
+                title: 'تغییر وضعیت کاربر',
+                text: "کاربر گرامی از تغییر وضعیت کاربر مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#7cacbe',
+                confirmButtonText: 'بله ، تغییر وضعیت انجام شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+                    var postData = {
+                        'LoanId': LoanId,
+                    };
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "LoanSatusChange",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    location.reload();
+                                });
+                            }
+                            else {
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                        }
+                    });
+                }
+            })
+        }
+        function Editloan() {
+            var userId = $("#Edit_UserId").val();
+            var fullName = $("#Edit_Fullname").val();
+            var postData = {
+                'UserId': userId,
+                'FullName': fullName,
+            };
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: "POST",
+                url: "Edit",
+                data: postData,
+                success: function(data) {
+                    if (data.isSuccess == true) {
+                        swal.fire(
+                            'موفق!',
+                            data.message,
+                            'success'
+                        ).then(function(isConfirm) {
+                            location.reload();
+                        });
+                    }
+                    else {
+                        swal.fire(
+                            'هشدار!',
+                            data.message,
+                            'warning'
+                        );
+                    }
+                },
+                error: function(request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+            $('#EditLoan').modal('hide');
+        }
+        function ShowModalEditloan(UserId, fullName) {
+            $('#Edit_Fullname').val(fullName)
+            $('#Edit_UserId').val(UserId)
+            $('#EditLoan').modal('show');
+        }
+    </script>
+}
+    @section Modals
+    {
+    <!-- Modal Edit User -->
+    <div class="modal fade" id="EditLoan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ویرایش وام</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <input type="hidden" id="Edit_LoanId" />
+                            <label for="Edit_Fullname">نام و نام خانوادگی</label>
+                            <input type="text" class="form-control" id="Edit_Fullname">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+
+                            <input type="hidden" id="Edit_User_ID" />
+                            <label for="Edit_Total_Amount">مبلغ کل</label>
+                            <input type="tel" class="form-control" id="Edit_Total_Amount">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Loan_Num">شماره وام</label>
+                            <input type="text" class="form-control" id="Edit_Loan_Num">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Payment_Num">تعداد قسط</label>
+                            <input type="text" class="form-control" id="Edit_Payment_Num">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Payment_Amount">مبلغ قسط</label>
+                            <input type="text" class="form-control" id="Edit_Payment_Amount">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Description">ضامن</label>
+                            <input type="text" class="form-control" id="Edit_Guaranty">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Introducer">معرف</label>
+                            <input type="text" class="form-control" id="Edit_Introducer">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_Cleared">تسویه شده</label>
+                            <input type="text" class="form-control" id="Edit_Cleared">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_DateCleared">تاریخ تسویه</label>
+                            <input type="text" class="form-control" id="Edit_DateCleared">
+                        </fieldset>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+                            <label for="Edit_InsertionTime">تاریخ ایجاد</label>
+                            <input type="text" class="form-control" id="Edit_InsertionTime">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" data-dismiss="modal">بستن</a>
+                    <a class="btn btn-primary" onclick="Editloan()">اعمال تغییرات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+    <!--  <script>
+            function DeleteLoan(LoanId) {
+                swal.fire({
+                    title: 'حذف کاربر',
+                    text: "کاربر گرامی از حذف کاربر مطمئن هستید؟",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#7cacbe',
+                    confirmButtonText: 'بله ، کاربر حذف شود',
+                    cancelButtonText: 'خیر'
+                }).then((result) => {
+                    if (result.value) {
+                        var postData = {
+                            'LoanId': LoanId,
+                        };
+                        $.ajax({
+                            contentType: 'application/x-www-form-urlencoded',
+                            dataType: 'json',
+                            type: "POST",
+                            url: "Delete",
+                            data: postData,
+                            success: function(data) {
+                                if (data.isSuccess == true) {
+                                    swal.fire(
+                                        'موفق!',
+                                        data.message,
+                                        'success'
+                                    ).then(function(isConfirm) {
+                                        location.reload();
+                                    });
+                                }
+                                else {
+                                    swal.fire(
+                                        'هشدار!',
+                                        data.message,
+                                        'warning'
+                                    );
+                                }
+                            },
+                            error: function(request, status, error) {
+                                alert(request.responseText);
+                            }
+                        });
+                    }
+                })
+            }
+            function LoanSatusChange(LoanId) {
+                swal.fire({
+                    title: 'تغییر وضعیت کاربر',
+                    text: "کاربر گرامی از تغییر وضعیت کاربر مطمئن هستید؟",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#7cacbe',
+                    confirmButtonText: 'بله ، تغییر وضعیت انجام شود',
+                    cancelButtonText: 'خیر'
+                }).then((result) => {
+                    if (result.value) {
+                        var postData = {
+                            'LoanId': LoanId,
+                        };
+                        $.ajax({
+                            contentType: 'application/x-www-form-urlencoded',
+                            dataType: 'json',
+                            type: "POST",
+                            url: "LoanSatusChange",
+                            data: postData,
+                            success: function(data) {
+                                if (data.isSuccess == true) {
+                                    swal.fire(
+                                        'موفق!',
+                                        data.message,
+                                        'success'
+                                    ).then(function(isConfirm) {
+                                        location.reload();
+                                    });
+                                }
+                                else {
+                                    swal.fire(
+                                        'هشدار!',
+                                        data.message,
+                                        'warning'
+                                    );
+                                }
+                            },
+                            error: function(request, status, error) {
+                                alert(request.responseText);
+                            }
+                        });
+                    }
+                })
+            }
+            function Editloan() {
+                var ID = $("#Edit_LoanId").val();
+                var Fullname = $("#Edit_Fullname").val();
+                var User_ID = $("#Edit_User_ID").val();
+                var Total_Amount = $("#Edit_Total_Amount").val();
+                var Loan_Num = $("#Edit_Loan_Num").val();
+                var Payment_Num = $("#Edit_Payment_Num").val();
+                var Payment_Amount = $("#Edit_Payment_Amount").val();
+                var Guaranty = $("#Edit_Guaranty").val();
+                var Introducer = $("#Edit_Introducer").val();
+                var Cleared = $("#Edit_Cleared").val();
+                var DateCleared = $("#Edit_DateCleared").val();
+                var User_ID = $("#Edit_User_ID").val();
+                var InsertionTime = $("#Edit_InsertionTime").val();
+
+                var postData = {
+                    'ID': ID,
+                    'Fullname': Fullname,
+                    'User_ID': User_ID,
+                    'Total_Amount': Total_Amount,
+                    'Loan_Num': Loan_Num,
+                    'Payment_Num': Payment_Num,
+                    'Payment_Amount': Payment_Amount,
+                    'Guaranty': Guaranty,
+                    'Introducer': Introducer,
+                    'Cleared': Cleared,
+                    'DateCleared': DateCleared,
+                   // 'User_ID': User_ID,
+                    'InsertionTime': InsertionTime,
+
+                };
+                $.ajax({
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    type: "POST",
+                    url: "Edit",
+                    data: postData,
+                    success: function(data) {
+                        if (data.isSuccess == true) {
+                            swal.fire(
+                                'موفق!',
+                                data.message,
+                                'success'
+                            ).then(function(isConfirm) {
+                                location.reload();
+                            });
+                        }
+                        else {
+                            swal.fire(
+                                'هشدار!',
+                                data.message,
+                                'warning'
+                            );
+                        }
+                    },
+                    error: function(request, status, error) {
+                        alert(request.responseText);
+                    }
+                });
+                $('#EditLoan').modal('hide');
+            }
+            function ShowModalEditloan(ID, Fullname,User_ID, Total_Amount, Loan_Num, Payment_Num,, Payment_Amount, Guaranty, Introducer, Cleared, DateCleared, User_ID, InsertTime) {
+                //ورودی هایی که رگفته رو بر روی edit_..  ست میکنه
+
+                $('#Edit_LoanId').val(ID,); // Set the hidden field value for LoanId
+
+                $('#Edit_Fullname').val(Fullname);
+                $('#Edit_User_ID').val(User_ID,); // Set the hidden field value for LoanId
+                $('#Edit_Total_Amount').val(Total_Amount);
+                $('#Edit_Loan_Num').val(Loan_Num);
+                $('#Edit_Payment_Num').val(Payment_Num);
+                $('#Edit_Payment_Amount').val(Payment_Amount);
+                $('#Edit_Guaranty').val(Guaranty);
+                $('#Edit_Introducer').val(Introducer);
+                $('#Edit_Cleared').val(Cleared);
+                $('#Edit_DateCleared').val(DateCleared);
+                $('#Edit_User_ID').val(User_ID);
+                $('#Edit_InsertionTime').val(InsertTime);
+
+
+                $('#EditLoan').modal('show');
+            }
+        </script>
+
+
+    -->
