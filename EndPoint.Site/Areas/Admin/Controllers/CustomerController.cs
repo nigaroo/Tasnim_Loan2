@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Tasnim_Loan.Application.Services.CustomerPanel.Commands.RegisterLoan;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetTypes;
+using Tasnim_Loan.Application.Services.Loans.Queries.GetLoans;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
@@ -26,6 +27,18 @@ namespace EndPoint.Site.Areas.Admin.Controllers
 
         }
 
+
+
+        public IActionResult Index(string searchkey, int page = 1)
+        {
+            return View(_getLoanService.Execute(new PanelRequestGetLoanDto
+            {
+
+                Page = page,
+                SearchKey = searchkey,
+
+            }));
+        }
 
         [HttpGet]
         public IActionResult Create()
@@ -66,9 +79,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return Json(result);
         }
       
-        public IActionResult Index()
-        {
-            return View();
-        }
+       
+
     }
 }
