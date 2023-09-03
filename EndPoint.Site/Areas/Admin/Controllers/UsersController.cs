@@ -24,7 +24,8 @@ using Tasnim_Loan.Persistence.Migrations;
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class UsersController : Controller
     {
         private readonly IDataBaseContext _context;
@@ -130,7 +131,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             }
         }
 
-
+        
         public IActionResult Index(string serchkey, int page = 1)
         {
             return View(_getCustomerService.Execute(new RequestGetCustomerDto
@@ -141,6 +142,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
 
             }));
         }
+        
         //  action لازم برای اضافه کردن کاربر جدید
         [HttpGet]
         public IActionResult Create()
@@ -150,7 +152,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         }
 
         // دیتا رو به سرویس رجیستر یوزر ارسال میکنه و ثبت نام رو انجام میده
-
+        
         [HttpPost]
         public IActionResult Create(string Fullname, string Password, string RePassword, string National_Number, int Unique_Payment_Identifier, string Description, int RoleId)
         {
@@ -174,16 +176,19 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             });
             return Json(result);
         }
+        
         [HttpPost]
         public IActionResult Delete(int UserId)
         {
             return Json(_removeUserService.Execute(UserId));
         }
+        
         [HttpPost]
         public IActionResult UserSatusChange(int UserId)
         {
             return Json(_userSatusChangeService.Execute(UserId));
         }
+        
         [HttpPost]
         public IActionResult Edit(int ID, string Fullname,  string National_Number, int Unique_Payment_Identifier, string Description, DateTime InsertionTime)
         {

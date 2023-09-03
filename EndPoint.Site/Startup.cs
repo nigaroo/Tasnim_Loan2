@@ -32,6 +32,9 @@ using Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange;
 using Tasnim_Loan.Application.Services.Loans.Commands.EditLoan;
 using Tasnim_Loan.Application.Services.Loans.Queries.GetTypes;
 using Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan;
+using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetTypes;
+using Tasnim_Loan.Application.Services.CustomerPanel.Commands.RegisterLoan;
+using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans;
 
 namespace EndPoint.Site
 {
@@ -87,9 +90,14 @@ namespace EndPoint.Site
             services.AddScoped<IRemoveLoanService, RemoveLoanService>();
             services.AddScoped<ILoanStatusChangeService, LoanSatusChangeService>();
             services.AddScoped<IEditLoanService, EditLoanService>();
-            services.AddScoped<IGetTypesService, GetTypesService>(); 
-            services.AddScoped<IAcceptLoanService, AcceptLoanService>(); 
+            services.AddScoped<IGetTypesService, GetTypesService>();
+            services.AddScoped<IAcceptLoanService, AcceptLoanService>();
 
+
+     
+            services.AddScoped<IPanelRegisterLoanService, PanelRegisterLoanService>();
+            services.AddScoped<IPanelGetTypesService, PanelGetTypesService>();
+            services.AddScoped<IPanelGetLoanService, PanelGetLoanService>();
 
 
 
@@ -119,7 +127,7 @@ namespace EndPoint.Site
 
             app.UseAuthentication();
             app.UseAuthorization();
-          
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -131,8 +139,13 @@ namespace EndPoint.Site
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-            
-                });
+
+
+                endpoints.MapControllerRoute(
+                name: "adminArea",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+            });
+
         }
     }
 }
