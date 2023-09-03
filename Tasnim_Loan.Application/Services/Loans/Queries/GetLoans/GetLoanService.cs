@@ -36,7 +36,7 @@ namespace Tasnim_Loan.Application.Services.Loans.Queries.GetLoans
                 Payment_Amount = p.Payment_Amount,
                 Guaranty = p.Guaranty,
                 Introducer = p.Introducer,
-                Cleared = p.Cleared,
+              //  Cleared =p.Cleared,
                 DateCleared = p.DateCleared,
                 InsertTime = p.InsertTime,
 

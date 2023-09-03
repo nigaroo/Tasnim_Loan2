@@ -140,6 +140,12 @@ namespace Tasnim_Loan.Application.Services.Customers.Commands.RegisterUser
                 };
             }
 
+           /* if (UserId != null)
+            {
+                var user = _context.Userss.Find(UserId);
+                RegisterCustomerService. = user;
+                _context.SaveChanges();
+            }*/
         }
         
     }

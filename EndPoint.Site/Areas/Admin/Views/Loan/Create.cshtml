@@ -29,7 +29,7 @@
                                             <label for="basicInput"> نام و نام خانوادگی</label>
                                             <input type="text" class="form-control" id="FullName">
                                         </fieldset>
-                                    </div>   
+                                    </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput"> شماره پرسنلی </label>
@@ -72,20 +72,7 @@
                                             <input type="text" class="form-control" id="Introducer">
                                         </fieldset>
                                     </div>
-                                       <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput">تسویه شده </label>
-                                            <input type="text" class="form-control" id="Cleared">
-                                        </fieldset>
-                                    </div>
-                                 
-                                      <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput">تاریخ تسویه </label>
-                                            <input type="text" class="form-control" id="DateCleared">
-                                        </fieldset>
-                                    </div>
-                                      <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicSelect">نوع وام</label>
                                             <select class="form-control" id="TypeId" name="Type" asp-items="@ViewBag.Type">
@@ -117,7 +104,7 @@
     <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Sweetalert2/sweetalert2.min.js"></script>
 
-  
+
     <script>
         function Registerloan() {
             swal.fire({
@@ -140,9 +127,6 @@
                     var Payment_Amount = $("#Payment_Amount").val();
                     var Guaranty = $("#Guaranty").val();
                     var Introducer = $("#Introducer").val();
-                    var Cleared = $("#Cleared").val();
-
-                    var DateCleared = $("#DateCleared").val();
                     var TypeId = $("#TypeId").val();
 
                     var postData = {
@@ -154,9 +138,7 @@
                         'Payment_Amount': Payment_Amount,
                         'Guaranty': Guaranty,
                         'Introducer': Introducer,
-                        'Cleared': Cleared,
                         'User_ID': User_ID,
-                        'DateCleared': DateCleared,
                         'TypeId': TypeId,
                     };
 

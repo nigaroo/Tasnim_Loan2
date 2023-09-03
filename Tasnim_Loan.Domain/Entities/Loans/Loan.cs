@@ -27,13 +27,15 @@ namespace Tasnim_Loan.Domain.Entities.Loans
 
         public string Guaranty { get; set; }
         public string Introducer { get; set; }
-
-        [Required]
-        public string Cleared { get; set; } 
-        public DateTime? DateCleared { get; set; }
         public bool Accept { get; set; }
 
+        [Required]
+        public bool Cleared { get; set; } 
+        public DateTime? DateCleared { get; set; }
+       
+
         public ICollection<LoanInType> LoanInType  { get; set; }
+        public ICollection<LoanInCodition> LoanInCodition { get; set; }
 
 
 

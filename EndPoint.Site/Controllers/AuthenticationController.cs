@@ -82,7 +82,7 @@ namespace EndPoint.Site.Controllers
                 var claims = new List<Claim>()
                 {
                  new Claim(ClaimTypes.NameIdentifier,signeupResult.Data.UserId.ToString()),
-                 new Claim("NationalNumber", request.National_Number),
+                 new Claim(ClaimTypes.SerialNumber, request.National_Number),
                  new Claim(ClaimTypes.Name, request.FullName),
                  new Claim(ClaimTypes.Role, "Customer"),
                 };

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.EditLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange;
 using Tasnim_Loan.Application.Services.Loans.Commands.RegisterLoan;
@@ -13,7 +14,7 @@ using Tasnim_Loan.Application.Services.Loans.Queries.GetTypes;
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
-  
+
     public class LoanController : Controller
     {
         private readonly IGetLoanService _getLoanService;
@@ -22,13 +23,16 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly IRemoveLoanService _removeLoanService;
         private readonly ILoanStatusChangeService _loanSatusChangeService;
         private readonly IEditLoanService _editLoanService;
+        private readonly IAcceptLoanService _acceptLoanService;
         public LoanController(IGetLoanService getLoanService
 
            , IGetTypesService getTypesService
+          
            , IRegisterLoanService registerLoanService
            , IRemoveLoanService removeLoanService
            , ILoanStatusChangeService loanSatusChangeService
-           , IEditLoanService editLoanService)
+           , IEditLoanService editLoanService
+           , IAcceptLoanService acceptLoanService)
         {
             _getLoanService = getLoanService;
             _getTypesService = getTypesService;
@@ -36,6 +40,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             _removeLoanService = removeLoanService;
             _loanSatusChangeService = loanSatusChangeService;
             _editLoanService = editLoanService;
+            _acceptLoanService = acceptLoanService;
         }
 
 
@@ -60,7 +65,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         // دیتا رو به سرویس رجیستر یوزر ارسال میکنه و ثبت نام رو انجام میده
 
         [HttpPost]
-        public IActionResult Create(string Fullname, int Total_Amount, int Loan_Num, int Payment_Num, int Payment_Amount, string Guaranty, string Introducer, string Cleared,int User_ID, DateTime DateCleared, int typeId)
+        public IActionResult Create(string Fullname, int Total_Amount, int Loan_Num, int Payment_Num, int Payment_Amount, string Guaranty, string Introducer, int User_ID,  int typeId)
         {
             var result = _registerLoanService.Execute(new RequestRegisterLoanDto
             {
@@ -71,9 +76,11 @@ namespace EndPoint.Site.Areas.Admin.Controllers
                 Payment_Amount = Payment_Amount,
                 Guaranty = Guaranty,
                 Introducer = Introducer,
-                Cleared = Cleared,
+             //   Cleared = Cleared,
+
+
                 User_ID = User_ID,
-                DateCleared = DateCleared,              
+               // DateCleared = DateCleared,
                 types = new List<TypesInRegisterLoanDto>()
                    {
                        new TypesInRegisterLoanDto
@@ -94,10 +101,11 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult LoanSatusChange(int LoanId)
         {
+
             return Json(_loanSatusChangeService.Execute(LoanId));
         }
         [HttpPost]
-        public IActionResult Edit(int ID, string Fullname,int User_ID, int Total_Amount, int Loan_Num, int Payment_Num,int Payment_Amount, string Guaranty,string Introducer, string Cleared,DateTime DateCleared, DateTime InsertionTime)
+        public IActionResult Edit(int ID, string Fullname, int User_ID, int Total_Amount, int Loan_Num, int Payment_Num, int Payment_Amount, string Guaranty, string Introducer, bool Cleared, DateTime DateCleared, DateTime InsertionTime)
         {
 
             return Json(_editLoanService.Execute(new RequestEditloanDto
@@ -112,10 +120,25 @@ namespace EndPoint.Site.Areas.Admin.Controllers
                 Guaranty = Guaranty,
                 Introducer = Introducer,
                 Cleared = Cleared,
-                DateCleared = DateCleared, 
+                DateCleared = DateCleared,
                 InsertionTime = InsertionTime
             }));
         }
+
+
+        [HttpPost]
+        public IActionResult Accept(int ID, bool Cleared, DateTime DateCleared)
+        {
+
+            return Json(_acceptLoanService.Execute(new RequestAcceptLoanDto
+            {
+                ID = ID,
+                Cleared = Cleared,
+                DateCleared = DateCleared,
+
+            }));
+        }
+
 
     }
 }

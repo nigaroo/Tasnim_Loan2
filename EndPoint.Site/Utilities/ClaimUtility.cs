@@ -22,12 +22,37 @@ namespace EndPoint.Site.Utilities
                 return null;
             }
 
-        }   
-        
-        
-     
+        }
 
 
+
+        public static string GetUserFullName(ClaimsPrincipal User)
+        {
+            try
+            {
+                var claimsIdentity = User.Identity as ClaimsIdentity;
+
+                return claimsIdentity.FindFirst(ClaimTypes.Name).Value;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static string GetUserNationalNumber(ClaimsPrincipal User)
+        {
+            try
+            {
+                var claimsIdentity = User.Identity as ClaimsIdentity;
+
+                return claimsIdentity.FindFirst(ClaimTypes.SerialNumber).Value;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public static List<string> GetRolse(ClaimsPrincipal User)
         {
             try

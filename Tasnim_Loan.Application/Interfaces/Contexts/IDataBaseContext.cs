@@ -20,7 +20,9 @@ namespace Tasnim_Loan.Application.Interfaces.Contexts
          DbSet<Role> Roles { get; set; }
          DbSet<UserInRole> UserInRoles { get; set; }
          DbSet<Typee> Types { get; set; }
+         DbSet<Condition> Conditions { get; set; }
          DbSet<LoanInType> LoanInTypes { get; set; }
+         DbSet<LoanInCodition> LoanInCoditions { get; set; }
 
 
         int SaveChanges(bool acceptAllChangesOnSuccess);

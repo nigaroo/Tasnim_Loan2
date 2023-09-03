@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasnim_Loan.Persistence.Context;
 
 namespace Tasnim_Loan.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230902203652_loancondition")]
+    partial class loancondition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,30 +45,7 @@ namespace Tasnim_Loan.Persistence.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Conditions");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 493, DateTimeKind.Local).AddTicks(1579),
-                            IsRemoved = false,
-                            Name = "Accept"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 493, DateTimeKind.Local).AddTicks(3764),
-                            IsRemoved = false,
-                            Name = "Reject"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 493, DateTimeKind.Local).AddTicks(3854),
-                            IsRemoved = false,
-                            Name = "Preview"
-                        });
+                    b.ToTable("Condition");
                 });
 
             modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.Loan", b =>
@@ -75,9 +54,6 @@ namespace Tasnim_Loan.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<bool>("Accept")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("Cleared")
                         .HasColumnType("bit");
@@ -227,21 +203,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(6672),
+                            InsertTime = new DateTime(2023, 9, 3, 0, 6, 51, 184, DateTimeKind.Local).AddTicks(8700),
                             IsRemoved = false,
                             Name = "treatment"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(9510),
+                            InsertTime = new DateTime(2023, 9, 3, 0, 6, 51, 184, DateTimeKind.Local).AddTicks(9431),
                             IsRemoved = false,
                             Name = "Housing"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(9613),
+                            InsertTime = new DateTime(2023, 9, 3, 0, 6, 51, 184, DateTimeKind.Local).AddTicks(9463),
                             IsRemoved = false,
                             Name = "Others"
                         });
@@ -362,21 +338,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 479, DateTimeKind.Local).AddTicks(3573),
+                            InsertTime = new DateTime(2023, 9, 3, 0, 6, 51, 180, DateTimeKind.Local).AddTicks(114),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(3832),
+                            InsertTime = new DateTime(2023, 9, 3, 0, 6, 51, 184, DateTimeKind.Local).AddTicks(7850),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(4358),
+                            InsertTime = new DateTime(2023, 9, 3, 0, 6, 51, 184, DateTimeKind.Local).AddTicks(8026),
                             IsRemoved = false,
                             Name = "Customer"
                         });

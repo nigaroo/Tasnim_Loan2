@@ -13,5 +13,12 @@ namespace Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers
  
         public string Description { get; set; }
         public bool IsActive { get; set; }
+
+
+
+        public DateTime? UpdateTime { get; set; }
+        public bool IsRemoved { get; set; }
+        public DateTime? RemoveTime { get; set; }
+
     }
 }

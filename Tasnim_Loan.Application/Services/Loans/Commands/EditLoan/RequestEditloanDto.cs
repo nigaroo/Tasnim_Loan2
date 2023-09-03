@@ -17,7 +17,7 @@ namespace Tasnim_Loan.Application.Services.Loans.Commands.EditLoan
         public int Payment_Amount { get; set; }
         public string Guaranty { get; set; }
         public string Introducer { get; set; }
-        public string Cleared { get; set; }
+        public bool Cleared { get; set; }
         public DateTime DateCleared { get; set; }
 
         public DateTime InsertionTime { get; set; }

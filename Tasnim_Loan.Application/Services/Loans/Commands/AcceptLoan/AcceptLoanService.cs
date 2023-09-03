@@ -6,26 +6,19 @@ using System.Threading.Tasks;
 using Tasnim_Loan.Application.Interfaces.Contexts;
 using Tasnim_Loan.Common.Dto;
 
-namespace Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange
+namespace Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan
 {
-    public interface ILoanStatusChangeService
-    {
-        ResultDto Execute(int ID);
-    }
-
-    public class LoanSatusChangeService : ILoanStatusChangeService
+    public class AcceptLoanService : IAcceptLoanService
     {
         private readonly IDataBaseContext _context;
 
-
-        public LoanSatusChangeService(IDataBaseContext context)
+        public AcceptLoanService(IDataBaseContext context)
         {
             _context = context;
         }
-
-        public ResultDto Execute(int ID)
+        public ResultDto Execute(RequestAcceptLoanDto request)
         {
-            var loan = _context.Loans.Find(ID);
+            var loan = _context.Loans.Find(request.ID);
             if (loan == null)
             {
                 return new ResultDto
@@ -35,15 +28,19 @@ namespace Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange
                 };
             }
 
-            loan.Accept = !loan.Accept;
+            //فیلد های نیاز به ویرایش 
+            
+            loan.Cleared = request.Cleared;
+            loan.DateCleared = request.DateCleared;
+
             _context.SaveChanges();
-            string customerstate = loan.Accept == true ? "تائید" : "رد  ";
+
             return new ResultDto()
             {
                 IsSuccess = true,
-                Message = $" درخواست کاربر با موفقیت {customerstate} شد!",
+                Message = "ثبت درخواست  کاربر انجام شد"
             };
-        }
 
+        }
     }
 }

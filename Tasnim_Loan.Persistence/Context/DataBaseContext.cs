@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Tasnim_Loan.Application.Interfaces.Contexts;
+using Tasnim_Loan.Common.Condition;
 using Tasnim_Loan.Common.Roles;
 using Tasnim_Loan.Common.Type;
 using Tasnim_Loan.Domain.Entities;
@@ -29,7 +30,9 @@ namespace Tasnim_Loan.Persistence.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserInRole> UserInRoles { get; set; }
         public DbSet<Typee> Types { get; set; }
+        public DbSet<Condition> Conditions { get; set; }
         public DbSet<LoanInType> LoanInTypes { get; set; }
+        public DbSet<LoanInCodition> LoanInCoditions { get; set; }
 
 
 
@@ -72,6 +75,14 @@ namespace Tasnim_Loan.Persistence.Context
             modelBuilder.Entity<Typee>().HasData(new Typee { ID = 1, Name = nameof(LoanTypes.treatment) });
             modelBuilder.Entity<Typee>().HasData(new Typee { ID = 2, Name = nameof(LoanTypes.Housing) });
             modelBuilder.Entity<Typee>().HasData(new Typee { ID = 3, Name = nameof(LoanTypes.Others) });
+
+
+            modelBuilder.Entity<Condition>().HasData(new Condition { ID = 1, Name = nameof(LoanCondition.Accept) });
+            modelBuilder.Entity<Condition>().HasData(new Condition { ID = 2, Name = nameof(LoanCondition.Reject) });
+            modelBuilder.Entity<Condition>().HasData(new Condition { ID = 3, Name = nameof(LoanCondition.Preview) });
+
+
+
         }
      
 

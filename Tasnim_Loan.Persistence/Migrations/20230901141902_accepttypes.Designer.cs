@@ -3,71 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasnim_Loan.Persistence.Context;
 
 namespace Tasnim_Loan.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230901141902_accepttypes")]
+    partial class accepttypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.Condition", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Conditions");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 493, DateTimeKind.Local).AddTicks(1579),
-                            IsRemoved = false,
-                            Name = "Accept"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 493, DateTimeKind.Local).AddTicks(3764),
-                            IsRemoved = false,
-                            Name = "Reject"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 493, DateTimeKind.Local).AddTicks(3854),
-                            IsRemoved = false,
-                            Name = "Preview"
-                        });
-                });
 
             modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.Loan", b =>
                 {
@@ -76,8 +28,8 @@ namespace Tasnim_Loan.Persistence.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<bool>("Accept")
-                        .HasColumnType("bit");
+                    b.Property<string>("Accept")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Cleared")
                         .HasColumnType("bit");
@@ -127,40 +79,6 @@ namespace Tasnim_Loan.Persistence.Migrations
                     b.HasIndex("User_ID");
 
                     b.ToTable("Loans");
-                });
-
-            modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.LoanInCodition", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("ConditionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("LoanId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ConditionId");
-
-                    b.HasIndex("LoanId");
-
-                    b.ToTable("LoanInCoditions");
                 });
 
             modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.LoanInType", b =>
@@ -227,21 +145,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(6672),
+                            InsertTime = new DateTime(2023, 9, 1, 17, 49, 0, 239, DateTimeKind.Local).AddTicks(258),
                             IsRemoved = false,
                             Name = "treatment"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(9510),
+                            InsertTime = new DateTime(2023, 9, 1, 17, 49, 0, 239, DateTimeKind.Local).AddTicks(2623),
                             IsRemoved = false,
                             Name = "Housing"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(9613),
+                            InsertTime = new DateTime(2023, 9, 1, 17, 49, 0, 239, DateTimeKind.Local).AddTicks(2719),
                             IsRemoved = false,
                             Name = "Others"
                         });
@@ -362,21 +280,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 479, DateTimeKind.Local).AddTicks(3573),
+                            InsertTime = new DateTime(2023, 9, 1, 17, 49, 0, 226, DateTimeKind.Local).AddTicks(7177),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(3832),
+                            InsertTime = new DateTime(2023, 9, 1, 17, 49, 0, 238, DateTimeKind.Local).AddTicks(7662),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 3, 1, 29, 1, 492, DateTimeKind.Local).AddTicks(4358),
+                            InsertTime = new DateTime(2023, 9, 1, 17, 49, 0, 238, DateTimeKind.Local).AddTicks(8144),
                             IsRemoved = false,
                             Name = "Customer"
                         });
@@ -425,25 +343,6 @@ namespace Tasnim_Loan.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.LoanInCodition", b =>
-                {
-                    b.HasOne("Tasnim_Loan.Domain.Entities.Loans.Condition", "Condition")
-                        .WithMany("LoanInCodition")
-                        .HasForeignKey("ConditionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Tasnim_Loan.Domain.Entities.Loans.Loan", "Loan")
-                        .WithMany("LoanInCodition")
-                        .HasForeignKey("LoanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Condition");
-
-                    b.Navigation("Loan");
                 });
 
             modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.LoanInType", b =>
@@ -495,15 +394,8 @@ namespace Tasnim_Loan.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.Condition", b =>
-                {
-                    b.Navigation("LoanInCodition");
-                });
-
             modelBuilder.Entity("Tasnim_Loan.Domain.Entities.Loans.Loan", b =>
                 {
-                    b.Navigation("LoanInCodition");
-
                     b.Navigation("LoanInType");
                 });
 

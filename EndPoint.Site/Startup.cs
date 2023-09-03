@@ -31,6 +31,7 @@ using Tasnim_Loan.Application.Services.Loans.Commands.RemoveLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange;
 using Tasnim_Loan.Application.Services.Loans.Commands.EditLoan;
 using Tasnim_Loan.Application.Services.Loans.Queries.GetTypes;
+using Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan;
 
 namespace EndPoint.Site
 {
@@ -87,6 +88,7 @@ namespace EndPoint.Site
             services.AddScoped<ILoanStatusChangeService, LoanSatusChangeService>();
             services.AddScoped<IEditLoanService, EditLoanService>();
             services.AddScoped<IGetTypesService, GetTypesService>(); 
+            services.AddScoped<IAcceptLoanService, AcceptLoanService>(); 
 
 
 

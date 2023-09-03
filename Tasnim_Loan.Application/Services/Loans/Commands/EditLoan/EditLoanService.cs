@@ -38,7 +38,7 @@ namespace Tasnim_Loan.Application.Services.Loans.Commands.EditLoan
             loan.Payment_Amount = request.Payment_Amount;
             loan.Guaranty = request.Guaranty;
             loan.Introducer = request.Introducer;
-            loan.Cleared = request.Cleared;
+      //      loan.Cleared = request.Cleared;
             loan.DateCleared = request.DateCleared;
             loan.InsertTime = request.InsertionTime;
 

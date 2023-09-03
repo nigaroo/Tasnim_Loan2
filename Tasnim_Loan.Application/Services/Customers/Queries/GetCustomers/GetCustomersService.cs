@@ -45,7 +45,7 @@ namespace Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers
 
 
             };
-
+           
 
         }
     }

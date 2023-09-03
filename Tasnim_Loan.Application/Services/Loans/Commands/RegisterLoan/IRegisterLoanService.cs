@@ -110,30 +110,31 @@ namespace Tasnim_Loan.Application.Services.Loans.Commands.RegisterLoan
                         Message = "معرف را وارد نمایید"
                     };
                 }
-                if (string.IsNullOrWhiteSpace(request.Cleared))
-                {
-                    return new ResultDto<ResultRegisterLoanDto>()
+                /*    if (string.IsNullOrWhiteSpace(request.Cleared))
                     {
-                        Data = new ResultRegisterLoanDto()
+                        return new ResultDto<ResultRegisterLoanDto>()
                         {
-                            LoanId = 0,
-                        },
-                        IsSuccess = false,
-                        Message = "تسویه را وارد نمایید"
-                    };
-                }
-                if (request.DateCleared == default(DateTime))
-                {
-                    return new ResultDto<ResultRegisterLoanDto>()
+                            Data = new ResultRegisterLoanDto()
+                            {
+                                LoanId = 0,
+                            },
+                            IsSuccess = false,
+                            Message = "تسویه را وارد نمایید"
+                        };
+                    }
+
+                    if (request.DateCleared == default(DateTime))
                     {
-                        Data = new ResultRegisterLoanDto()
+                        return new ResultDto<ResultRegisterLoanDto>()
                         {
-                            LoanId = 0,
-                        },
-                        IsSuccess = false,
-                        Message = "تاریخ تسویه  را وارد نمایید"
-                    };
-                }
+                            Data = new ResultRegisterLoanDto()
+                            {
+                                LoanId = 0,
+                            },
+                            IsSuccess = false,
+                            Message = "تاریخ تسویه  را وارد نمایید"
+                        };
+                    } */
                 if (request.User_ID == 0)
                 {
                     return new ResultDto<ResultRegisterLoanDto>()
@@ -166,10 +167,10 @@ namespace Tasnim_Loan.Application.Services.Loans.Commands.RegisterLoan
                     Payment_Amount = request.Payment_Amount,
                     Guaranty = request.Guaranty,
                     Introducer = request.Introducer,
-                    Cleared = request.Cleared,
+                 //   Cleared = request.Cleared,
 
-                    DateCleared = request.DateCleared,
-                    Accept = true,
+                 //   DateCleared = request.DateCleared,
+                 //   Accept = false,
                 };
 
                 List<LoanInType> loanInTypes = new List<LoanInType>();
@@ -226,8 +227,8 @@ namespace Tasnim_Loan.Application.Services.Loans.Commands.RegisterLoan
         public int Payment_Amount { get; set; }
         public string Guaranty { get; set; }
         public string Introducer { get; set; }
-        public string Cleared { get; set; }
-        public DateTime? DateCleared { get; set; }
+     //   public bool Cleared { get; set; }
+     //   public DateTime? DateCleared { get; set; }
         public int User_ID { get; set; }
         public List<TypesInRegisterLoanDto> types { get; set; }
 
