@@ -71,10 +71,6 @@ namespace EndPoint.Site
                 options.AccessDeniedPath = new PathString("/Authentication/Signin");
             });
 
-
-
-
-
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IGetCustomersService, GetCustomersService>();
             services.AddScoped<IRegisterCustomerService, RegisterCustomerService>();
@@ -84,7 +80,6 @@ namespace EndPoint.Site
             services.AddScoped<IEditUserService, EditUserService>();
             services.AddScoped<IGetRolesService, GetRolesService>();
 
-
             services.AddScoped<IGetLoanService, GetLoanService>();
             services.AddScoped<IRegisterLoanService, RegisterLoanService>();
             services.AddScoped<IRemoveLoanService, RemoveLoanService>();
@@ -92,15 +87,10 @@ namespace EndPoint.Site
             services.AddScoped<IEditLoanService, EditLoanService>();
             services.AddScoped<IGetTypesService, GetTypesService>();
             services.AddScoped<IAcceptLoanService, AcceptLoanService>();
-
-
      
             services.AddScoped<IPanelRegisterLoanService, PanelRegisterLoanService>();
             services.AddScoped<IPanelGetTypesService, PanelGetTypesService>();
             services.AddScoped<IPanelGetLoanService, PanelGetLoanService>();
-
-
-
 
             string connectionString = "Data Source= NEGAR; Initial Catalog=Tasnim_LoanDb; Integrated Security=True;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(connectionString));
