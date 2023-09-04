@@ -1,8 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Tasnim_Loan.Application.Interfaces.Contexts;
 using Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.EditLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange;
@@ -17,6 +24,9 @@ namespace EndPoint.Site.Areas.Admin.Controllers
 
     public class LoanController : Controller
     {
+        private readonly IDataBaseContext _context;
+
+
         private readonly IGetLoanService _getLoanService;
         private readonly IGetTypesService _getTypesService;
         private readonly IRegisterLoanService _registerLoanService;
@@ -24,16 +34,17 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly ILoanStatusChangeService _loanSatusChangeService;
         private readonly IEditLoanService _editLoanService;
         private readonly IAcceptLoanService _acceptLoanService;
-        public LoanController(IGetLoanService getLoanService
+        public LoanController(IDataBaseContext context
 
+           , IGetLoanService getLoanService
            , IGetTypesService getTypesService
-          
            , IRegisterLoanService registerLoanService
            , IRemoveLoanService removeLoanService
            , ILoanStatusChangeService loanSatusChangeService
            , IEditLoanService editLoanService
            , IAcceptLoanService acceptLoanService)
         {
+            _context = context;
             _getLoanService = getLoanService;
             _getTypesService = getTypesService;
             _registerLoanService = registerLoanService;
@@ -43,7 +54,88 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             _acceptLoanService = acceptLoanService;
         }
 
+        [HttpGet]
+        public async Task<FileResult> ExportLoansInExcel()
+        {
+            var resultDto = await _context.Loans
+                .Select(loan => new GetLoanDto
+                {
+                    ID = loan.ID,
+                    FullName = loan.FullName,
+                    Total_Amount = loan.Total_Amount,
+                    Loan_Num = loan.Loan_Num,
+                    Payment_Num = loan.Payment_Num,
+                    Payment_Amount = loan.Payment_Amount,
+                    Guaranty = loan.Guaranty,
+                    Introducer = loan.Introducer,
+                  //  Cleared = loan.Cleared,
+                    DateCleared = loan.DateCleared,
+                    InsertTime = loan.InsertTime,
+                    IsRemoved = loan.IsRemoved,
+                    RemoveTime = loan.RemoveTime,
+                    UpdateTime = loan.UpdateTime,
 
+                })
+                .ToListAsync();
+
+            var fileName = "loans.xlsx";
+            return GenerateExcel(fileName, resultDto);
+        }
+
+        private FileResult GenerateExcel(string fileName, List<GetLoanDto> loans)
+        {
+            DataTable dataTable = new DataTable("Loans");
+            dataTable.Columns.AddRange(new DataColumn[]
+            {
+                new DataColumn("ID"),
+                new DataColumn("FullName"),
+                new DataColumn("Total_Amount"),
+                new DataColumn("Loan_Num"),
+                new DataColumn("Payment_Num"),
+                new DataColumn("Payment_Amount"),
+                new DataColumn("Guaranty"),
+                new DataColumn("Introducer"),
+                new DataColumn("DateCleared"),
+                new DataColumn("InsertTime"),
+                 new DataColumn("IsRemoved"),
+                new DataColumn("RemoveTime"),
+                new DataColumn("UpdateTime"),
+
+            });
+
+            foreach (var loan in loans)
+            {
+                dataTable.Rows.Add(
+                    loan.ID,
+                    loan.FullName,
+                    loan.Total_Amount,
+                    loan.Loan_Num,
+                    loan.Payment_Num,
+                    loan.Payment_Amount,
+                    loan.Guaranty,
+                    loan.Introducer,
+                    loan.DateCleared,
+                    loan.InsertTime,
+                    loan.IsRemoved,
+                    loan.RemoveTime,
+                    loan.UpdateTime
+                );
+
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+
+                    return File(stream.ToArray(),
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        fileName);
+                }
+            }
+        }
         public IActionResult Index(string searchkey, int page = 1)
         {
             return View(_getLoanService.Execute(new RequestGetLoanDto
@@ -65,7 +157,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         // دیتا رو به سرویس رجیستر یوزر ارسال میکنه و ثبت نام رو انجام میده
 
         [HttpPost]
-        public IActionResult Create(string Fullname, int Total_Amount, int Loan_Num, int Payment_Num, int Payment_Amount, string Guaranty, string Introducer, int User_ID,  int typeId)
+        public IActionResult Create(string Fullname, int Total_Amount, int Loan_Num, int Payment_Num, int Payment_Amount, string Guaranty, string Introducer, int User_ID, int typeId)
         {
             var result = _registerLoanService.Execute(new RequestRegisterLoanDto
             {
@@ -76,11 +168,11 @@ namespace EndPoint.Site.Areas.Admin.Controllers
                 Payment_Amount = Payment_Amount,
                 Guaranty = Guaranty,
                 Introducer = Introducer,
-             //   Cleared = Cleared,
+                //   Cleared = Cleared,
 
 
                 User_ID = User_ID,
-               // DateCleared = DateCleared,
+                // DateCleared = DateCleared,
                 types = new List<TypesInRegisterLoanDto>()
                    {
                        new TypesInRegisterLoanDto

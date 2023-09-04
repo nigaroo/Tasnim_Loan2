@@ -11,13 +11,15 @@ namespace Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans
     public class PanelGetLoanService : IPanelGetLoanService
     {
         private readonly IDataBaseContext _context;
+
         public PanelGetLoanService(IDataBaseContext context)
         {
             _context = context;
         }
-        public PanelResultGetLoanDto Execute(PanelRequestGetLoanDto request)
+        public PanelResultGetLoanDto Execute(PanelRequestGetLoanDto request, int customerId)
         {
-            var loans = _context.Loans.AsQueryable();
+           // var customer = GetCustomerById(customerId);
+            var loans = _context.Loans.AsQueryable().Where(p => p.User_ID == customerId);
             if (!string.IsNullOrWhiteSpace(request.SearchKey))
             {
                 loans = loans.Where(p => p.FullName.Contains(request.SearchKey));
@@ -46,7 +48,8 @@ namespace Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans
             return new PanelResultGetLoanDto
             {
                 Rows = rowscount,
-               
+                Loans = loansList,
+
 
 
             };

@@ -21,13 +21,15 @@
                         <div class="card-body collapse show">
                             <div class="card-block card-dashboard">
                                 <p class="card-text">لیست  وام کاربران  تسنیم </p>
-
-                                <form method="get" class="col-xl-4 col-lg-6 col-md-12 mb-1">
-                                    <fieldset class="form-group">
-                                        <input type="text" class="form-control" name="searchkey">
-                                        <button class="btn btn-success">جستجو</button>
-                                    </fieldset>
-                                </form>
+                                <div class="col-md-12">
+                                    <form method="get" class="col-xl-5 col-lg-6 col-md-9 mb-1 form-search">
+                                        <fieldset class="form-group">
+                                            <input type="text" class="form-control" name="searchkey">
+                                            <button class="btn btn-success">جستجو</button>
+                                        </fieldset>
+                                    </form>
+                                    <button id="exportButton" class="btn btn-primary col-md-2">دانلود گزارش‌ها</button>
+                                </div>
 
                                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                     <div class="col-sm-12 table-responsive">
@@ -102,6 +104,13 @@
 
 
     <script>
+          $(document).ready(function() {
+            $('#exportButton').click(function() {
+                window.location.href = '/Admin/Loan/ExportLoansInExcel';
+            });
+        });
+
+
 
         function DeleteLoan(LoanId) {
             swal.fire({
@@ -441,13 +450,13 @@
                             <input type="datetime-local" class="form-control" id="Accept_DateCleared">
                         </fieldset>
                     </div>
-                <!--   <form action="/action_page.php">
-                        <label for="birthdaytime">Birthday (date and time):</label>
-                        <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-                        <input type="submit">
-                    </form>
-                    -->
-                   
+                    <!--   <form action="/action_page.php">
+                            <label for="birthdaytime">Birthday (date and time):</label>
+                            <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+                            <input type="submit">
+                        </form>
+                        -->
+
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary" data-dismiss="modal">بستن</a>

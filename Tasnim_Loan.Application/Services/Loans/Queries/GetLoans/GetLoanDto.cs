@@ -21,6 +21,9 @@ namespace Tasnim_Loan.Application.Services.Loans.Queries.GetLoans
         public bool Accept { get; set; }
         public int User_ID { get; set; }
         public DateTime InsertTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
+        public bool IsRemoved { get; set; }
+        public DateTime? RemoveTime { get; set; }
 
 
     }

@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Tasnim_Loan.Application.Services.Customers.Queries.GetCustomers
 {
-    public interface IGetCustomersService // ye service omadi tarif kardi
+    public interface IGetCustomersService 
     {
-        ResultGetCustomerDto Execute(RequestGetCustomerDto request); //toie() vorodihamoone 
+        ResultGetCustomerDto Execute(RequestGetCustomerDto request); 
     }
 }

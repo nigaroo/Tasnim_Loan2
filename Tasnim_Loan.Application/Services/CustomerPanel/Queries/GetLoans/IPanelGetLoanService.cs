@@ -8,6 +8,6 @@ namespace Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans
 {
     public interface IPanelGetLoanService
     {
-        PanelResultGetLoanDto Execute(PanelRequestGetLoanDto request);
+        PanelResultGetLoanDto Execute(PanelRequestGetLoanDto request,int customerId);
     }
 }

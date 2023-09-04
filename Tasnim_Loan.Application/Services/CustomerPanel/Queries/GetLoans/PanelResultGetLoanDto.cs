@@ -8,7 +8,7 @@ namespace Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans
 {
     public class PanelResultGetLoanDto
     {
-        public PanelGetLoanDto Loans { get; set; }
+        public List<PanelGetLoanDto> Loans { get; set; }
         public int Rows { get; set; }
     }
 }
