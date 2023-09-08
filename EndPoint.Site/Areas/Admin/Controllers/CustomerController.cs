@@ -1,4 +1,5 @@
 ﻿using EndPoint.Site.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using Tasnim_Loan.Application.Services.Loans.Queries.GetLoans;
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Customer")]
     public class CustomerController : Controller
     {
         private readonly IDataBaseContext _context;
@@ -42,44 +44,28 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             int? customerId = ClaimUtility.GetUserId(User);
             if (customerId.HasValue)
             {
-                var loanResult = _getCustomerService.Execute(new PanelRequestGetCustomerDto(), customerId.Value);
 
+                var loanResult = _getLoanService.Execute(new PanelRequestGetLoanDto(), customerId.Value);
                 // Pass the result to the view
                 return View(loanResult);
             }
             return RedirectToAction("Error");
         }
 
-        /* public IActionResult Index(string searchkey, int page = 1)
-         {
-             return View(_getLoanService.Execute(new PanelRequestGetLoanDto
-             {
-
-                 Page = page,
-                 SearchKey = searchkey,
-
-             }));
-         }
-        */
+      
         [HttpGet]
         public IActionResult Create()
         {
-          /*  ViewBag.Type = new SelectList(_getTypesService.Execute().Data, "ID", "Name");
-            return View();
-          */
             int? customerId = ClaimUtility.GetUserId(User);
             if (customerId.HasValue)
             {
-                var loanResult = _getLoanService.Execute(new PanelRequestGetLoanDto(), customerId.Value);
-
-                // Pass the result to the view
+                var loanResult = _getCustomerService.Execute(new PanelRequestGetCustomerDto(), customerId.Value);              
                 return View(loanResult);
             }
             return RedirectToAction("Error");
-
         }
 
-        // دیتا رو به سرویس رجیستر یوزر ارسال میکنه و ثبت نام رو انجام میده
+      
 
      
     }

@@ -21,6 +21,7 @@ using Tasnim_Loan.Application.Services.Loans.Queries.GetTypes;
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Customer")]
 
     public class LoanController : Controller
     {

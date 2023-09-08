@@ -35,6 +35,9 @@ using Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetTypes;
 using Tasnim_Loan.Application.Services.CustomerPanel.Commands.RegisterLoan;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans;
+using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomersLoan;
+using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomerInfo;
+using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomers;
 
 namespace EndPoint.Site
 {
@@ -92,10 +95,20 @@ namespace EndPoint.Site
             services.AddScoped<IPanelGetTypesService, PanelGetTypesService>();
             services.AddScoped<IPanelGetLoanService, PanelGetLoanService>();
 
+
+            services.AddScoped<IPanelGetCustomerService, PanelGetCustomerService>();
+            services.AddScoped<IGetCustomerInfo, GetCustomerInfo>();
+            services.AddScoped<IGetCustomersLoan, GetCustomersLoan>();
+
+
+
+
             string connectionString = "Data Source= NEGAR; Initial Catalog=Tasnim_LoanDb; Integrated Security=True;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(connectionString));
             services.AddControllersWithViews();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -131,9 +144,7 @@ namespace EndPoint.Site
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 
-                endpoints.MapControllerRoute(
-                name: "adminArea",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+              
             });
 
         }
