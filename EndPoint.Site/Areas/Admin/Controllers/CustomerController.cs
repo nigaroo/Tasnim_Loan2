@@ -8,6 +8,7 @@ using Tasnim_Loan.Application.Services.CustomerPanel.Commands.RegisterLoan;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomers;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetTypes;
+using Tasnim_Loan.Application.Services.Loans.Commands.PayLoan;
 using Tasnim_Loan.Application.Services.Loans.Queries.GetLoans;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
@@ -21,6 +22,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly IPanelGetCustomerService _getCustomerService;
         private readonly IPanelGetTypesService _getTypesService;
         private readonly IPanelRegisterLoanService _registerLoanService;
+        private readonly IPayLoanService _payLoanService;
 
         public CustomerController(
 
@@ -28,6 +30,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
            , IPanelGetLoanService getLoanService
            , IPanelGetCustomerService getCustomerService
            , IPanelGetTypesService getTypesService
+           , IPayLoanService payLoanService
            , IPanelRegisterLoanService registerLoanService)
 
         {
@@ -36,6 +39,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             _getCustomerService = getCustomerService;
             _getTypesService = getTypesService;
             _registerLoanService = registerLoanService;
+            _payLoanService = payLoanService;
 
         }
 
@@ -65,8 +69,18 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return RedirectToAction("Error");
         }
 
-      
+        [HttpPost]
+        public IActionResult Pay(int ID, int Payment_Amount)
+        {
 
-     
+            return Json(_payLoanService.Execute(new RequestPayLoanDto
+            {
+                ID = ID,
+                Payment_Amount = Payment_Amount,
+
+            }));
+        }
+
+
     }
 }

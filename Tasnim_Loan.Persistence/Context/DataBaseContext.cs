@@ -38,6 +38,7 @@ namespace Tasnim_Loan.Persistence.Context
 
 
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -68,7 +69,7 @@ namespace Tasnim_Loan.Persistence.Context
         private void SeedData(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>().HasData(new Role { ID = 1, Name = nameof(UserRoles.Admin) });
-            modelBuilder.Entity<Role>().HasData(new Role { ID = 2, Name = nameof(UserRoles.Operator) });
+           // modelBuilder.Entity<Role>().HasData(new Role { ID = 2, Name = nameof(UserRoles.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { ID = 3, Name = nameof(UserRoles.Customer) });
 
 

@@ -13,6 +13,7 @@ using Tasnim_Loan.Application.Interfaces.Contexts;
 using Tasnim_Loan.Application.Services.Loans.Commands.AcceptLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.EditLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.LoanStatusChange;
+using Tasnim_Loan.Application.Services.Loans.Commands.PayLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.RegisterLoan;
 using Tasnim_Loan.Application.Services.Loans.Commands.RemoveLoan;
 using Tasnim_Loan.Application.Services.Loans.Queries.GetLoans;
@@ -35,6 +36,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly ILoanStatusChangeService _loanSatusChangeService;
         private readonly IEditLoanService _editLoanService;
         private readonly IAcceptLoanService _acceptLoanService;
+      
         public LoanController(IDataBaseContext context
 
            , IGetLoanService getLoanService
@@ -43,6 +45,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
            , IRemoveLoanService removeLoanService
            , ILoanStatusChangeService loanSatusChangeService
            , IEditLoanService editLoanService
+           
            , IAcceptLoanService acceptLoanService)
         {
             _context = context;
@@ -231,6 +234,9 @@ namespace EndPoint.Site.Areas.Admin.Controllers
 
             }));
         }
+
+
+       
 
 
     }

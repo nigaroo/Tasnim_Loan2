@@ -23,6 +23,7 @@ namespace Tasnim_Loan.Application.Interfaces.Contexts
          DbSet<Condition> Conditions { get; set; }
          DbSet<LoanInType> LoanInTypes { get; set; }
          DbSet<LoanInCodition> LoanInCoditions { get; set; }
+ 
 
 
         int SaveChanges(bool acceptAllChangesOnSuccess);

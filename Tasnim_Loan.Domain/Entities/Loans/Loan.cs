@@ -23,7 +23,7 @@ namespace Tasnim_Loan.Domain.Entities.Loans
         public int Payment_Num { get; set; }
 
         [Required]
-        public int Payment_Amount { get; set; }
+        public int Payment_Amount { get; set; } = 0;
 
         public string Guaranty { get; set; }
         public string Introducer { get; set; }

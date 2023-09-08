@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasnim_Loan.Persistence.Context;
 
 namespace Tasnim_Loan.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230908205905_addingDefaultValueForPaymentAmount")]
+    partial class addingDefaultValueForPaymentAmount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +51,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 480, DateTimeKind.Local).AddTicks(216),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 422, DateTimeKind.Local).AddTicks(9903),
                             IsRemoved = false,
                             Name = "Accept"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 480, DateTimeKind.Local).AddTicks(2422),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 423, DateTimeKind.Local).AddTicks(3087),
                             IsRemoved = false,
                             Name = "Reject"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 480, DateTimeKind.Local).AddTicks(2512),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 423, DateTimeKind.Local).AddTicks(3260),
                             IsRemoved = false,
                             Name = "Preview"
                         });
@@ -227,21 +229,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 479, DateTimeKind.Local).AddTicks(5540),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 422, DateTimeKind.Local).AddTicks(3149),
                             IsRemoved = false,
                             Name = "treatment"
                         },
                         new
                         {
                             ID = 2,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 479, DateTimeKind.Local).AddTicks(8187),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 422, DateTimeKind.Local).AddTicks(6929),
                             IsRemoved = false,
                             Name = "Housing"
                         },
                         new
                         {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 479, DateTimeKind.Local).AddTicks(8300),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 422, DateTimeKind.Local).AddTicks(7124),
                             IsRemoved = false,
                             Name = "Others"
                         });
@@ -362,14 +364,21 @@ namespace Tasnim_Loan.Persistence.Migrations
                         new
                         {
                             ID = 1,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 467, DateTimeKind.Local).AddTicks(6674),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 408, DateTimeKind.Local).AddTicks(2927),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
+                            ID = 2,
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 421, DateTimeKind.Local).AddTicks(8231),
+                            IsRemoved = false,
+                            Name = "Operator"
+                        },
+                        new
+                        {
                             ID = 3,
-                            InsertTime = new DateTime(2023, 9, 9, 3, 24, 47, 479, DateTimeKind.Local).AddTicks(2951),
+                            InsertTime = new DateTime(2023, 9, 9, 0, 29, 2, 421, DateTimeKind.Local).AddTicks(9052),
                             IsRemoved = false,
                             Name = "Customer"
                         });

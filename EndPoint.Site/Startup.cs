@@ -38,6 +38,7 @@ using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetLoans;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomersLoan;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomerInfo;
 using Tasnim_Loan.Application.Services.CustomerPanel.Queries.GetCustomers;
+using Tasnim_Loan.Application.Services.Loans.Commands.PayLoan;
 
 namespace EndPoint.Site
 {
@@ -57,7 +58,7 @@ namespace EndPoint.Site
             {
                 options.AddPolicy(UserRoles.Admin, policy => policy.RequireRole(UserRoles.Admin));
                 options.AddPolicy(UserRoles.Customer, policy => policy.RequireRole(UserRoles.Customer));
-                options.AddPolicy(UserRoles.Operator, policy => policy.RequireRole(UserRoles.Operator));
+            //    options.AddPolicy(UserRoles.Operator, policy => policy.RequireRole(UserRoles.Operator));
             });
 
 
@@ -90,6 +91,7 @@ namespace EndPoint.Site
             services.AddScoped<IEditLoanService, EditLoanService>();
             services.AddScoped<IGetTypesService, GetTypesService>();
             services.AddScoped<IAcceptLoanService, AcceptLoanService>();
+            services.AddScoped<IPayLoanService, PayLoanService>();
      
             services.AddScoped<IPanelRegisterLoanService, PanelRegisterLoanService>();
             services.AddScoped<IPanelGetTypesService, PanelGetTypesService>();
